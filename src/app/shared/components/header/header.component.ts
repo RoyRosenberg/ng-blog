@@ -16,5 +16,8 @@ export class HeaderComponent implements OnInit {
 
   toggleSideBarClick() {
     this.toggleSideBar.emit();
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 300);
   }
 }
