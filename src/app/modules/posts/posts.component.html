@@ -1,1 +1,14 @@
-<p>posts works!</p>
+<h1>Posts</h1>
+<div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+    <div fxFlex="100">
+        <mat-spinner *ngIf="inProgress$ | async; else elseBlock"></mat-spinner>
+    </div>
+</div>
+<ng-template #elseBlock style="margin-bottom: 20px;">
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+        <div fxFlex="100">
+            <app-post-table fxFlex="100" [posts]="posts$ | async"></app-post-table>
+        </div>
+    </div>
+</ng-template>
+<br />

@@ -6,6 +6,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
 import { HighchartsChartModule } from 'highcharts-angular';
@@ -16,6 +19,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AreaComponent } from './widgets/area/area.component';
 import { CardComponent } from './widgets/card/card.component';
 import { PieComponent } from './widgets/pie/pie.component';
+import { PostTableComponent } from './widgets/post-table/post-table.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,8 @@ import { PieComponent } from './widgets/pie/pie.component';
     SidebarComponent,
     AreaComponent,
     CardComponent,
-    PieComponent
+    PieComponent,
+    PostTableComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +41,10 @@ import { PieComponent } from './widgets/pie/pie.component';
     MatMenuModule,
     MatListModule,
     RouterModule,
-    HighchartsChartModule
+    HighchartsChartModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     HeaderComponent,
@@ -44,7 +52,9 @@ import { PieComponent } from './widgets/pie/pie.component';
     FooterComponent,
     AreaComponent,
     CardComponent,
-    PieComponent
+    PieComponent,
+    PostTableComponent,
+    MatSpinner
   ]
 })
 export class SharedModule { }
