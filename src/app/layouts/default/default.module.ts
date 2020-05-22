@@ -7,10 +7,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
-import { DashboardService } from 'src/app/modules/dashboard.service';
 import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
 import { PostsComponent } from 'src/app/modules/posts/posts.component';
+import { DashboardService } from 'src/app/services/dashboard.service';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { PostModule } from 'src/app/store/posts/module';
 
 import { DefaultComponent } from './default.component';
 
@@ -31,7 +32,8 @@ import { DefaultComponent } from './default.component';
     FlexLayoutModule,
     MatCardModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    PostModule
   ],
   providers: [DashboardService]
 })
