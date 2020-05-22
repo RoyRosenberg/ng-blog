@@ -1,10 +1,12 @@
 import { Post } from 'src/app/shared/models/Post';
+import { PostFilter } from 'src/app/shared/models/postFilter';
 
 export interface PostState {
     fetching: boolean;
     posts: Post[];
-    totalPages: number;
-    itemsPerPage: number;
+    filter: PostFilter;
+    postsPerPage: number;
     currentPage: number;
-    fetchedPages: number[];
+    totalPages: number;
+    totalPostCount: number;
 }

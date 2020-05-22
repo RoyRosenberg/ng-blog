@@ -27,4 +27,9 @@
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+<div fxLayout="row" style="background-color: white;" fxLayoutAlign="end center" fxLayoutGap="20px">
+  <div fxFlex="100" fxLayoutAlign="end center">
+    <mat-spinner *ngIf="loadingInProgress" [diameter]="20"></mat-spinner>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" (page)="pagingChange($event)" showFirstLastButtons></mat-paginator>    
+  </div>
+</div>

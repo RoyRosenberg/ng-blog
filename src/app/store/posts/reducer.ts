@@ -1,13 +1,25 @@
 import { PostActionTypes, PostsActions } from './actions';
 import { PostState } from './state';
 
-const initState: PostState = {
+const from = new Date();
+from.setDate(from.getDate() - 300);
+
+export const initState: PostState = {
     fetching: false,
     posts: [],
-    totalPages: 0,
-    itemsPerPage: 10,
+    filter: {
+        userName: '',
+        customer: '',
+        fromDate: from,
+        toDate: new Date(),
+        tags: [],
+        postsPerPage: 10,
+        pageIndexToFetch: 1,
+    },
+    postsPerPage: 0,
     currentPage: 0,
-    fetchedPages: []
+    totalPages: 0,
+    totalPostCount: 0
 };
 
 export function postsReducer(state: PostState = initState, action: PostsActions): PostState {
@@ -16,12 +28,22 @@ export function postsReducer(state: PostState = initState, action: PostsActions)
         case PostActionTypes.GetPosts:
             return {
                 ...state,
-                fetching: true
+                fetching: true,
+                filter: action.payload
             };
         case PostActionTypes.GetPostsSuccess:
+            // console.log('post filtered OK', action.payload);
+            // const copyPostMap = new Map(state.posts);
+            // const copyPostMap = new Map<number, Post[]>();
+            // copyPostMap.set(action.payload.currentPage, action.payload.posts);
+            // console.log('post are map', copyPostMap);
             return {
                 ...state,
-                posts: action.payload,
+                posts: action.payload.items,
+                currentPage: action.payload.currentPage,
+                postsPerPage: action.payload.itemsPerPage,
+                totalPages: action.payload.totalPages,
+                totalPostCount: action.payload.totalItemCount,
                 fetching: false
             };
         case PostActionTypes.GetPostsFailed:
