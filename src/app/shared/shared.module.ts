@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,6 +27,18 @@ import { CardComponent } from './widgets/card/card.component';
 import { PieComponent } from './widgets/pie/pie.component';
 import { PostSearchComponent } from './widgets/post-search/post-search.component';
 import { PostTableComponent } from './widgets/post-table/post-table.component';
+
+export const BLOG_DATE_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -56,7 +69,11 @@ import { PostTableComponent } from './widgets/post-table/post-table.component';
     MatFormFieldModule,
     MatSelectModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    ReactiveFormsModule
+  ],
+  providers: [
+    { provide: MAT_DATE_FORMATS, useValue: BLOG_DATE_FORMATS },
   ],
   exports: [
     HeaderComponent,
@@ -67,7 +84,8 @@ import { PostTableComponent } from './widgets/post-table/post-table.component';
     PieComponent,
     PostTableComponent,
     MatSpinner,
-    PostSearchComponent
+    PostSearchComponent,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }

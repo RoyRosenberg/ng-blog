@@ -1,13 +1,17 @@
 <h1>Posts</h1>
-<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
     <div fxFlex="100">
-        <mat-spinner *ngIf="(inProgress$ | async) && (posts$ | async).length === 0"></mat-spinner>
+        <app-post-search [users]="users$ | async" [customers]="customers$ | async" (search)="performSearch($event)"></app-post-search>
     </div>
 </div>
 
-<div *ngIf="(posts$ | async).length > 0" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
-    <div fxFlex="100">
-        <app-post-search [users]="users$ | async" [customers]="customers$ | async"></app-post-search>
+<div *ngIf="(posts$ | async).length === 0">
+    <mat-card color="warn">No Items Found</mat-card>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <div fxFlex="100" fxLayoutAlign="center center">
+        <mat-spinner *ngIf="(inProgress$ | async) && (posts$ | async).length === 0"></mat-spinner>
     </div>
 </div>
 

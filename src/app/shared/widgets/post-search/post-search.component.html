@@ -1,32 +1,42 @@
-<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-  <mat-form-field fxFlex="20">
-    <mat-label>User</mat-label>
-    <mat-select placeholder="User">
-      <mat-option [value]="">-- All --</mat-option>
-      <mat-option *ngFor="let user of users" [value]="user.id">
-        {{user.userName}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field fxFlex="20">
-    <mat-label>Customer</mat-label>
-    <mat-select placeholder="customer">
-      <mat-option [value]="">-- All --</mat-option>
-      <mat-option *ngFor="let cust of customers" [value]="cust.id">
-        {{cust.company}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
-  <mat-form-field fxFlex="20">
-    <mat-label>From</mat-label>
-    <input matInput [matDatepicker]="pickerFrom">
-    <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
-    <mat-datepicker #pickerFrom></mat-datepicker>
-  </mat-form-field>
-  <mat-form-field fxFlex="20">
-    <mat-label>To</mat-label>
-    <input matInput [matDatepicker]="pickerTo">
-    <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
-    <mat-datepicker #pickerTo></mat-datepicker>
-  </mat-form-field>
+<div [formGroup]="searchForm">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <mat-form-field fxFlex="25">
+      <mat-label>User</mat-label>
+      <mat-select placeholder="User" formControlName="userId">
+        <mat-option [value]="0">-- All --</mat-option>
+        <mat-option *ngFor="let user of users" [value]="user.id">
+          {{user.userName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFlex="25">
+      <mat-label>Customer</mat-label>
+      <mat-select placeholder="customer" formControlName="customerId">
+        <mat-option [value]="0">-- All --</mat-option>
+        <mat-option *ngFor="let cust of customers" [value]="cust.id">
+          {{cust.company}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field fxFlex="25">
+      <mat-label>From</mat-label>
+      <input matInput [matDatepicker]="pickerFrom" formControlName="fromDate">
+      <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+      <mat-datepicker #pickerFrom></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field fxFlex="25">
+      <mat-label>To</mat-label>
+      <input matInput [matDatepicker]="pickerTo" formControlName="toDate">
+      <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+      <mat-datepicker #pickerTo></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+    <div fxFlex="100" fxLayoutAlign="end center">
+      <button mat-raised-button color="primary" (click)="searchClicked()">Search
+        <mat-icon>search</mat-icon>
+      </button>
+    </div>
+  </div>
 </div>
+<br />

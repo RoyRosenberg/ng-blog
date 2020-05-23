@@ -1,9 +1,11 @@
-export class PostFilter {
-    userName: string;
-    customer: string;
+export class PostSearchFilter {
+    userId: number;
+    customerId: number;
     fromDate: Date;
     toDate: Date;
     tags: number[];
+}
+export class PostFilter extends PostSearchFilter {
     postsPerPage: number;
     pageIndexToFetch: number;
 }

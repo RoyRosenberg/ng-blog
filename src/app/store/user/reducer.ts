@@ -7,7 +7,6 @@ export const initState: UserState = {
 };
 
 export function usersReducer(state: UserState = initState, action: UsersActions): UserState {
-    console.log('in user reducer:', action);
     switch (action.type) {
         case UserActionTypes.GetUsers:
             return {

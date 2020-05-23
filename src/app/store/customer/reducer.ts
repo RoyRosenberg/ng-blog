@@ -7,7 +7,6 @@ export const initState: CustomerState = {
 };
 
 export function customerReducer(state: CustomerState = initState, action: CustomersActions): CustomerState {
-    console.log('in cust reducer:', action);
     switch (action.type) {
         case CustomerActionTypes.GetCustomers:
             return {
