@@ -3,8 +3,8 @@
     <mat-label>User</mat-label>
     <mat-select placeholder="User">
       <mat-option [value]="">-- All --</mat-option>
-      <mat-option *ngFor="let user of ['user1', 'user2', 'user3']" [value]="user">
-        {{user}}
+      <mat-option *ngFor="let user of users" [value]="user.id">
+        {{user.userName}}
       </mat-option>
     </mat-select>
   </mat-form-field>

@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import { AppState } from './store/appState';
+import { UserActions } from './store/user';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +11,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'dashboard';
+  constructor(store: Store<AppState>){
+    store.dispatch(new UserActions.LoadUsers());
+  }
 }

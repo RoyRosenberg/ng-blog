@@ -3,7 +3,9 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/shared/models/Post';
 import { PagingInfo, PostFilter } from 'src/app/shared/models/postFilter';
+import { User } from 'src/app/shared/models/user';
 import { AppState } from 'src/app/store/appState';
+import { UserSelectors } from 'src/app/store/user';
 
 import { PostActions, PostSelectors } from '../../store/posts';
 
@@ -17,6 +19,7 @@ export class PostsComponent implements OnInit {
   inProgress$: Observable<boolean>;
   postPerPage$: Observable<number>;
   postCount$: Observable<number>;
+  users$: Observable<User[]>;
 
   constructor(private store: Store<AppState>) { }
 
@@ -26,6 +29,8 @@ export class PostsComponent implements OnInit {
     this.postPerPage$ = this.store.select(PostSelectors.getPostsPerPageCount);
     this.postCount$ = this.store.select(PostSelectors.getPostCount);
     this.store.dispatch(new PostActions.LoadPosts());
+
+    this.users$ = this.store.select(UserSelectors.getUsers);
   }
 
   pagingChanged(paging: PagingInfo) {
