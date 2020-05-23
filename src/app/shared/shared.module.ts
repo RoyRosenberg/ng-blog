@@ -2,12 +2,17 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { RouterModule } from '@angular/router';
@@ -19,6 +24,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AreaComponent } from './widgets/area/area.component';
 import { CardComponent } from './widgets/card/card.component';
 import { PieComponent } from './widgets/pie/pie.component';
+import { PostSearchComponent } from './widgets/post-search/post-search.component';
 import { PostTableComponent } from './widgets/post-table/post-table.component';
 
 @NgModule({
@@ -29,7 +35,8 @@ import { PostTableComponent } from './widgets/post-table/post-table.component';
     AreaComponent,
     CardComponent,
     PieComponent,
-    PostTableComponent
+    PostTableComponent,
+    PostSearchComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +51,12 @@ import { PostTableComponent } from './widgets/post-table/post-table.component';
     HighchartsChartModule,
     MatTableModule,
     MatPaginatorModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     HeaderComponent,
@@ -54,7 +66,8 @@ import { PostTableComponent } from './widgets/post-table/post-table.component';
     CardComponent,
     PieComponent,
     PostTableComponent,
-    MatSpinner
+    MatSpinner,
+    PostSearchComponent
   ]
 })
 export class SharedModule { }

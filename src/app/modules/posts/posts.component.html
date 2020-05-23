@@ -5,11 +5,17 @@
     </div>
 </div>
 
-<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+<div *ngIf="(posts$ | async).length > 0" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+    <div fxFlex="100">
+        <app-post-search></app-post-search>
+    </div>
+</div>
+
+<div *ngIf="(posts$ | async).length > 0" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
     <div fxFlex="100">
         <app-post-table fxFlex="100" [posts]="posts$ | async" [pageSize]="postPerPage$ | async"
-            [loadingInProgress]="inProgress$ | async"
-            [length]="postCount$ | async" (paginatorChanged)="pagingChanged($event)"></app-post-table>
+            [loadingInProgress]="inProgress$ | async" [length]="postCount$ | async"
+            (paginatorChanged)="pagingChanged($event)"></app-post-table>
     </div>
 </div>
 
