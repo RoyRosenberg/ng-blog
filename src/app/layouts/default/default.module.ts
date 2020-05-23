@@ -11,6 +11,7 @@ import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.componen
 import { PostsComponent } from 'src/app/modules/posts/posts.component';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { CustomerModule } from 'src/app/store/customer/module';
 import { PostModule } from 'src/app/store/posts/module';
 import { UserModule } from 'src/app/store/user/module';
 
@@ -35,7 +36,8 @@ import { DefaultComponent } from './default.component';
     MatTableModule,
     MatPaginatorModule,
     PostModule,
-    UserModule
+    UserModule,
+    CustomerModule
   ],
   providers: [DashboardService]
 })

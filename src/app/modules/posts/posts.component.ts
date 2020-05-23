@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Customer } from 'src/app/shared/models/customer';
 import { Post } from 'src/app/shared/models/Post';
 import { PagingInfo, PostFilter } from 'src/app/shared/models/postFilter';
 import { User } from 'src/app/shared/models/user';
 import { AppState } from 'src/app/store/appState';
+import { CustomerSelectors } from 'src/app/store/customer';
 import { UserSelectors } from 'src/app/store/user';
 
 import { PostActions, PostSelectors } from '../../store/posts';
@@ -20,6 +22,7 @@ export class PostsComponent implements OnInit {
   postPerPage$: Observable<number>;
   postCount$: Observable<number>;
   users$: Observable<User[]>;
+  customers$: Observable<Customer[]>;
 
   constructor(private store: Store<AppState>) { }
 
@@ -31,6 +34,8 @@ export class PostsComponent implements OnInit {
     this.store.dispatch(new PostActions.LoadPosts());
 
     this.users$ = this.store.select(UserSelectors.getUsers);
+    this.customers$ = this.store.select(CustomerSelectors.getCustomers);
+
   }
 
   pagingChanged(paging: PagingInfo) {

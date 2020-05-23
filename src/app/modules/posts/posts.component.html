@@ -7,7 +7,7 @@
 
 <div *ngIf="(posts$ | async).length > 0" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
     <div fxFlex="100">
-        <app-post-search [users]="users$ | async"></app-post-search>
+        <app-post-search [users]="users$ | async" [customers]="customers$ | async"></app-post-search>
     </div>
 </div>
 

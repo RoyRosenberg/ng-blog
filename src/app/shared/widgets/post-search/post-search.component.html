@@ -12,8 +12,8 @@
     <mat-label>Customer</mat-label>
     <mat-select placeholder="customer">
       <mat-option [value]="">-- All --</mat-option>
-      <mat-option *ngFor="let cust of ['cust1', 'cust2', 'cust3']" [value]="cust">
-        {{cust}}
+      <mat-option *ngFor="let cust of customers" [value]="cust.id">
+        {{cust.company}}
       </mat-option>
     </mat-select>
   </mat-form-field>

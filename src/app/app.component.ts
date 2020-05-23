@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 
 import { AppState } from './store/appState';
+import { CustomerActions } from './store/customer';
 import { UserActions } from './store/user';
 
 @Component({
@@ -13,5 +14,6 @@ export class AppComponent {
   title = 'dashboard';
   constructor(store: Store<AppState>){
     store.dispatch(new UserActions.LoadUsers());
+    store.dispatch(new CustomerActions.LoadCustomers());
   }
 }

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { Customer } from '../../models/customer';
 import { User } from '../../models/user';
 
 @Component({
@@ -9,6 +10,7 @@ import { User } from '../../models/user';
 })
 export class PostSearchComponent implements OnInit {
   @Input() users: User[];
+  @Input() customers: Customer[];
   constructor() { }
 
   ngOnInit() {
