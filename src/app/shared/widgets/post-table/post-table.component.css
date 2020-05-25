@@ -22,3 +22,7 @@ tr.example-element-row:not(.example-expanded-row):active {
     overflow: hidden;
     display: flex;
 }
+
+mat-progress-bar {
+    height: 24px;
+}

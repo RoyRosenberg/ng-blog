@@ -37,7 +37,7 @@ export class PostTableComponent implements OnInit {
   @Output() paginatorChanged = new EventEmitter<PagingInfo>();
   dataSource = new MatTableDataSource<Post>([]);
   expandedElement: Post;
-  displayedColumns: string[] = ['id', 'title', 'date', 'user', 'customer'];
+  displayedColumns: string[] = ['id', 'title', 'date', 'user', 'customer', 'progress'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor() { }
