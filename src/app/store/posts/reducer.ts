@@ -14,7 +14,7 @@ export const initState: PostState = {
         toDate: new Date(),
         tags: [],
         postsPerPage: 10,
-        pageIndexToFetch: 1,
+        pageIndexToFetch: 0,
     },
     postsPerPage: 10,
     currentPage: 1,

@@ -8,8 +8,8 @@
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">
-      <th mat-header-cell fxFlex="30" fxLayoutAlign="start center" *matHeaderCellDef> Title </th>
-      <td mat-cell fxFlex="30" fxLayoutAlign="start center" *matCellDef="let element"> {{element.title}} </td>
+      <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> Title </th>
+      <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element"> {{element.title}} </td>
     </ng-container>
 
     <!-- Date Column -->
@@ -30,7 +30,7 @@
       <td mat-cell fxFlex="10" fxLayoutAlign="start center" *matCellDef="let element"> {{element.user.userName}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="progress">
+    <!-- <ng-container matColumnDef="progress">
       <th mat-header-cell fxFlex="20" fxLayoutAlign="start center" *matHeaderCellDef> Progress </th>
       <td mat-cell fxFlex="20" fxLayoutAlign="start center" *matCellDef="let element"> 
         <div fxFlex="100" style="position: relative;">
@@ -38,7 +38,7 @@
           <span style="position: absolute;top: 15%; left: 25%;font-weight: bold; color: white;">15</span>
         </div>
       </td>
-    </ng-container>
+    </ng-container> -->
 
     <ng-container matColumnDef="expandedDetail">
       <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
