@@ -13,10 +13,10 @@ import { PostActions, PostSelectors } from '../../store/posts';
 
 @Component({
   selector: 'app-posts',
-  templateUrl: './posts.component.html',
-  styleUrls: ['./posts.component.scss']
+  templateUrl: './post-list.component.html',
+  styleUrls: ['./post-list.component.scss']
 })
-export class PostsComponent implements OnInit {
+export class PostListComponent implements OnInit {
   posts$: Observable<Post[]>;
   inProgress$: Observable<boolean>;
   postPerPage$: Observable<number>;

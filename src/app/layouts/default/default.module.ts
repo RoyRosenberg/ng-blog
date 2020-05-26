@@ -8,7 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
-import { PostsComponent } from 'src/app/modules/posts/posts.component';
+import { PostListComponent } from 'src/app/modules/post-list/post-list.component';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CustomerModule } from 'src/app/store/customer/module';
@@ -23,7 +23,7 @@ import { DefaultComponent } from './default.component';
   declarations: [
     DefaultComponent,
     DashboardComponent,
-    PostsComponent
+    PostListComponent
   ],
   imports: [
     CommonModule,

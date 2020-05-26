@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { DefaultComponent } from './layouts/default/default.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
-import { PostsComponent } from './modules/posts/posts.component';
+import { PostListComponent } from './modules/post-list/post-list.component';
 
 
 const routes: Routes = [
@@ -11,7 +11,12 @@ const routes: Routes = [
     path: '', component: DefaultComponent,
     children: [
       { path: '', component: DashboardComponent },
-      { path: 'posts', component: PostsComponent }
+      {
+        path: 'posts',
+        children: [
+          { path: 'list', component: PostListComponent }
+        ]
+      }
     ]
   }
 ];

@@ -17,7 +17,6 @@ export class LoadPosts implements Action {
 
 export class LoadPostsSuccess implements Action {
     readonly type = PostActionTypes.GetPostsSuccess;
-
     constructor(public payload: PagingResponse<Post>) { }
 }
 
