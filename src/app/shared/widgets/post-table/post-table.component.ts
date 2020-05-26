@@ -9,7 +9,7 @@ import { PagingInfo } from '../../models/postFilter';
 @Component({
   selector: 'app-post-table',
   templateUrl: './post-table.component.html',
-  styleUrls: ['./post-table.component.css'],
+  styleUrls: ['./post-table.component.scss'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),
@@ -37,7 +37,7 @@ export class PostTableComponent implements OnInit {
   @Output() paginatorChanged = new EventEmitter<PagingInfo>();
   dataSource = new MatTableDataSource<Post>([]);
   expandedElement: Post;
-  displayedColumns: string[] = ['id', 'title', 'date', 'user', 'customer'];
+  displayedColumns: string[] = ['id', 'title', 'date', 'user', 'customer', 'actions'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   constructor() { }

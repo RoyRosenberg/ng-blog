@@ -8,8 +8,8 @@
 
     <!-- Title Column -->
     <ng-container matColumnDef="title">
-      <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> Title </th>
-      <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element"> {{element.title}} </td>
+      <th mat-header-cell fxFlex="40" fxLayoutAlign="start center" *matHeaderCellDef> Title </th>
+      <td mat-cell fxFlex="40" fxLayoutAlign="start center" *matCellDef="let element"> {{element.title}} </td>
     </ng-container>
 
     <!-- Date Column -->
@@ -24,10 +24,22 @@
       <td mat-cell fxFlex="20" fxLayoutAlign="start center" *matCellDef="let element"> {{element.project.customer.company}} </td>
     </ng-container>
 
-    <!-- Symbol Column -->
+    <!-- User Column -->
     <ng-container matColumnDef="user">
       <th mat-header-cell fxFlex="10" fxLayoutAlign="start center" *matHeaderCellDef> User </th>
       <td mat-cell fxFlex="10" fxLayoutAlign="start center" *matCellDef="let element"> {{element.user.userName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell fxFlex="10" fxLayoutAlign="start center" *matHeaderCellDef>Actions</th>
+      <td (click)="$event.stopPropagation()" mat-cell fxFlex="10" fxLayoutGap="5px" fxLayoutAlign="center center" *matCellDef="let element"> 
+        <button mat-mini-fab color="warn" matTooltip="delete post" aria-label="delete post">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" matTooltip="edit post" aria-label="edit post">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
     </ng-container>
 
     <!-- <ng-container matColumnDef="progress">

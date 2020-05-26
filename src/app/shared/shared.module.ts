@@ -17,6 +17,7 @@ import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { HighchartsChartModule } from 'highcharts-angular';
 
@@ -72,7 +73,8 @@ export const BLOG_DATE_FORMATS = {
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatTooltipModule
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: BLOG_DATE_FORMATS },

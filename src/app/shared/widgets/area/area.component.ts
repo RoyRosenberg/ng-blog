@@ -36,6 +36,9 @@ export class AreaComponent implements OnInit {
       credits: {
         enabled: false
       },
+      xAxis: {
+        categories: ['26/05', '27/05', '28/05', '29/05', '30/05', '31/05', '01/06']
+      },
       series: this.data
     };
     HC_exporting(Highcharts);
