@@ -32,10 +32,11 @@
     </mat-form-field>
   </div>
   <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
-    <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">
-      <button mat-raised-button color="accent">New Post
+    <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">     
+      <a mat-raised-button routerLink="/posts/edit" color="accent">
+        New Post
         <mat-icon>post_add</mat-icon>
-      </button>
+      </a>
       <button mat-raised-button color="primary" (click)="searchClicked()">Search
         <mat-icon>search</mat-icon>
       </button>      

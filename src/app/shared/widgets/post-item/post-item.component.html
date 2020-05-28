@@ -1,0 +1,102 @@
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="postInfo" errorMessage="Name is required.">
+    <form [formGroup]="postInfo">
+      <ng-template matStepLabel>Post Information</ng-template>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <mat-form-field fxFlex="80" appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput placeholder="Title" formControlName="title">
+          <mat-error *ngIf="postInfo.get('title').hasError('required')">
+            Title is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field fxFlex="20" appearance="outline">
+          <mat-label>User</mat-label>
+          <mat-select placeholder="User" formControlName="userId">
+            <mat-option [value]="0">-- All --</mat-option>
+            <mat-option *ngFor="let user of users" [value]="user.id">
+              {{user.userName}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <mat-form-field fxFlex="20" appearance="outline">
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="pickerFrom" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+          <mat-datepicker #pickerFrom></mat-datepicker>
+          <mat-error *ngIf="postInfo.get('date').hasError('required')">
+            Date is <strong>required</strong>
+          </mat-error>         
+        </mat-form-field>
+
+        <mat-form-field fxFlex="40" appearance="outline">
+          <mat-label>Customer</mat-label>
+          <mat-select placeholder="customer" formControlName="customerId">
+            <mat-option [value]="0">-- All --</mat-option>
+            <mat-option *ngFor="let cust of customers" [value]="cust.id">
+              {{cust.company}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="40" appearance="outline">
+          <mat-label>Project</mat-label>
+          <mat-select placeholder="customer" formControlName="customerId">
+            <mat-option [value]="0">-- All --</mat-option>
+            <mat-option *ngFor="let cust of customers" [value]="cust.id">
+              {{cust.company}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+        <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">
+          <button mat-raised-button matStepperNext color="primary" >Next
+            <mat-icon>arrow_forward_ios</mat-icon>
+          </button>
+        </div>
+      </div>      
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="postDetails" errorMessage="Summary is required">   
+    <form [formGroup]="postDetails">
+      <ng-template matStepLabel>Details</ng-template>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <mat-form-field fxFlex="100" appearance="outline">
+          <mat-label>Summary</mat-label>
+          <textarea matInput style="height: 200px;" formControlName="summary"></textarea>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+        <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">
+          <button mat-raised-button matStepperPrevious color="warn">
+            <mat-icon>arrow_back_ios</mat-icon>Back
+          </button>
+          <button mat-raised-button matStepperNext color="primary" >Next
+            <mat-icon>arrow_forward_ios</mat-icon>
+          </button>
+        </div>
+      </div>     
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+      <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <button mat-raised-button matStepperPrevious color="warn">
+          <mat-icon>arrow_back_ios</mat-icon>Back
+        </button>
+        <button mat-raised-button matStepperNext color="primary" >Save and Finish
+          <mat-icon>send</mat-icon>
+        </button>
+        <button mat-raised-button matStepperPrevious color="accent">Cancel
+          <mat-icon>cancel</mat-icon>
+        </button>
+      </div>
+    </div>  
+  </mat-step>
+</mat-horizontal-stepper>

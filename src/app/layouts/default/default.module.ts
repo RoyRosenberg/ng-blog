@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
+import { PostEditComponent } from 'src/app/modules/post-edit/post-edit.component';
 import { PostListComponent } from 'src/app/modules/post-list/post-list.component';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -23,7 +24,8 @@ import { DefaultComponent } from './default.component';
   declarations: [
     DefaultComponent,
     DashboardComponent,
-    PostListComponent
+    PostListComponent,
+    PostEditComponent,
   ],
   imports: [
     CommonModule,

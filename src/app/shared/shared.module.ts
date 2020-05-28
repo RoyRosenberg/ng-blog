@@ -15,6 +15,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -27,6 +28,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AreaComponent } from './widgets/area/area.component';
 import { CardComponent } from './widgets/card/card.component';
 import { PieComponent } from './widgets/pie/pie.component';
+import { PostItemComponent } from './widgets/post-item/post-item.component';
 import { PostSearchComponent } from './widgets/post-search/post-search.component';
 import { PostTableComponent } from './widgets/post-table/post-table.component';
 
@@ -51,7 +53,8 @@ export const BLOG_DATE_FORMATS = {
     CardComponent,
     PieComponent,
     PostTableComponent,
-    PostSearchComponent
+    PostSearchComponent,
+    PostItemComponent
   ],
   imports: [
     CommonModule,
@@ -74,7 +77,8 @@ export const BLOG_DATE_FORMATS = {
     MatNativeDateModule,
     ReactiveFormsModule,
     MatProgressBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatStepperModule
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: BLOG_DATE_FORMATS },
@@ -89,7 +93,8 @@ export const BLOG_DATE_FORMATS = {
     PostTableComponent,
     MatSpinner,
     PostSearchComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PostItemComponent
   ]
 })
 export class SharedModule { }
