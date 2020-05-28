@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from './store/appState';
 import { CustomerActions } from './store/customer';
 import { ProjectActions } from './store/project';
+import { TagActions } from './store/tag';
 import { UserActions } from './store/user';
 
 @Component({
@@ -17,5 +18,6 @@ export class AppComponent {
     store.dispatch(new UserActions.LoadUsers());
     store.dispatch(new CustomerActions.LoadCustomers());
     store.dispatch(new ProjectActions.LoadProjects());
+    store.dispatch(new TagActions.LoadTags());
   }
 }

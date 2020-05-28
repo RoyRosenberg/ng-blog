@@ -15,6 +15,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CustomerModule } from 'src/app/store/customer/module';
 import { PostModule } from 'src/app/store/posts/module';
 import { ProjectModule } from 'src/app/store/project/module';
+import { TagModule } from 'src/app/store/tag/module';
 import { UserModule } from 'src/app/store/user/module';
 
 import { DefaultComponent } from './default.component';
@@ -39,7 +40,8 @@ import { DefaultComponent } from './default.component';
     PostModule,
     UserModule,
     CustomerModule,
-    ProjectModule
+    ProjectModule,
+    TagModule
   ],
   providers: [DashboardService]
 })
