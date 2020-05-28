@@ -4,6 +4,7 @@ export class Project {
     description: string;
     date: Date;
     state: ProjectStatus;
+    customerId: number;
 }
 
 export enum ProjectStatus {

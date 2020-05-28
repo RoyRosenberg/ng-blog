@@ -2,7 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
 import { MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDividerModule } from '@angular/material/divider';
@@ -31,6 +33,7 @@ import { PieComponent } from './widgets/pie/pie.component';
 import { PostItemComponent } from './widgets/post-item/post-item.component';
 import { PostSearchComponent } from './widgets/post-search/post-search.component';
 import { PostTableComponent } from './widgets/post-table/post-table.component';
+import { TagSelectionComponent } from './widgets/tag-selection/tag-selection.component';
 
 export const BLOG_DATE_FORMATS = {
   parse: {
@@ -54,7 +57,8 @@ export const BLOG_DATE_FORMATS = {
     PieComponent,
     PostTableComponent,
     PostSearchComponent,
-    PostItemComponent
+    PostItemComponent,
+    TagSelectionComponent
   ],
   imports: [
     CommonModule,
@@ -78,7 +82,9 @@ export const BLOG_DATE_FORMATS = {
     ReactiveFormsModule,
     MatProgressBarModule,
     MatTooltipModule,
-    MatStepperModule
+    MatStepperModule,
+    MatChipsModule,
+    MatAutocompleteModule
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: BLOG_DATE_FORMATS },
