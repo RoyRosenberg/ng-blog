@@ -14,11 +14,10 @@ import { DashboardService } from 'src/app/services/dashboard.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CustomerModule } from 'src/app/store/customer/module';
 import { PostModule } from 'src/app/store/posts/module';
+import { ProjectModule } from 'src/app/store/project/module';
 import { UserModule } from 'src/app/store/user/module';
 
 import { DefaultComponent } from './default.component';
-
-
 
 @NgModule({
   declarations: [
@@ -39,7 +38,8 @@ import { DefaultComponent } from './default.component';
     MatPaginatorModule,
     PostModule,
     UserModule,
-    CustomerModule
+    CustomerModule,
+    ProjectModule
   ],
   providers: [DashboardService]
 })
