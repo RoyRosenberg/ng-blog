@@ -1,2 +1,21 @@
-<app-post-item [users]="users$ | async" [customers]="customers$ | async"
-[projects]="projects$ | async" [tags]="tags$ | async"></app-post-item>
+<!-- Wait until all data loaded -->
+<ng-container
+    *ngIf="(usersLoading$ | async) || (tagsLoading$ | async) || (projectsLoading$ | async) || (customersLoading$ | async); else dataValidationPanel">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+        <mat-spinner></mat-spinner>
+    </div>
+</ng-container>
+
+<!-- If some data is empty, do not continue to new post -->
+<ng-template #dataValidationPanel>
+    <ng-container
+        *ngIf="(users$ | async).length === 0 || (customers$ | async).length === 0 || (projects$ | async).length === 0 || (tags$ | async).length === 0; else showPostPanel">
+        <mat-card [style.backgroundColor]="'orange'">Cannot create post, make sure to create at least on customer, project, user and tag before continuing</mat-card>
+    </ng-container>
+</ng-template>
+
+<!-- All OK - Show post form -->
+<ng-template #showPostPanel>
+    <app-post-item [users]="users$ | async" [customers]="customers$ | async" [projects]="projects$ | async"
+        [tags]="tags$ | async"></app-post-item>
+</ng-template>

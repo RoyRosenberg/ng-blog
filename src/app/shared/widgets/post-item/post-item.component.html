@@ -1,5 +1,5 @@
 <mat-horizontal-stepper linear #stepper>
-  <mat-step [stepControl]="postInfo" errorMessage="Name is required.">
+  <mat-step [stepControl]="postInfo" errorMessage="fill all data">   
     <form [formGroup]="postInfo">
       <ng-template matStepLabel>Post Information</ng-template>
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
@@ -56,10 +56,10 @@
       </div>
 
       <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
-        <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">
-          <button mat-raised-button matStepperPrevious color="warn">
+        <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">         
+          <a mat-raised-button routerLink="/posts/list" color="warn">           
             <mat-icon>cancel</mat-icon>Cancel
-          </button>
+          </a>
           <button mat-raised-button matStepperNext color="primary">Next
             <mat-icon>arrow_forward_ios</mat-icon>
           </button>
@@ -83,9 +83,9 @@
           <button mat-raised-button matStepperPrevious color="primary">
             <mat-icon>arrow_back_ios</mat-icon>Back
           </button>
-          <button mat-raised-button matStepperPrevious color="warn">
+          <a mat-raised-button routerLink="/posts/list" color="warn">           
             <mat-icon>cancel</mat-icon>Cancel
-          </button>
+          </a>
           <button mat-raised-button matStepperNext color="primary">Next
             <mat-icon>arrow_forward_ios</mat-icon>
           </button>
@@ -101,9 +101,9 @@
         <button mat-raised-button matStepperPrevious color="primary">
           <mat-icon>arrow_back_ios</mat-icon>Back
         </button>        
-        <button mat-raised-button matStepperPrevious color="warn">Cancel
-          <mat-icon>cancel</mat-icon>
-        </button>
+        <a mat-raised-button routerLink="/posts/list" color="warn">           
+          <mat-icon>cancel</mat-icon>Cancel
+        </a>
         <button mat-raised-button matStepperNext color="primary">Save and Finish
           <mat-icon>send</mat-icon>
         </button>

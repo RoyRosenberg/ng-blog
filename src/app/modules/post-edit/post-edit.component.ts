@@ -6,10 +6,10 @@ import { Project } from 'src/app/shared/models/project';
 import { Tag } from 'src/app/shared/models/tag';
 import { User } from 'src/app/shared/models/user';
 import { AppState } from 'src/app/store/appState';
-import { getCustomers } from 'src/app/store/customer/selectors';
-import { getProjects } from 'src/app/store/project/selectors';
-import { getTags } from 'src/app/store/tag/selectors';
-import { getUsers } from 'src/app/store/user/selectors';
+import { CustomerSelectors } from 'src/app/store/customer';
+import { ProjectSelectors } from 'src/app/store/project';
+import { TagSelectors } from 'src/app/store/tag';
+import { UserSelectors } from 'src/app/store/user';
 
 @Component({
   selector: 'app-post-edit',
@@ -21,12 +21,22 @@ export class PostEditComponent implements OnInit {
   customers$: Observable<Customer[]>;
   tags$: Observable<Tag[]>;
   projects$: Observable<Project[]>;
+  usersLoading$: Observable<boolean>;
+  tagsLoading$: Observable<boolean>;
+  projectsLoading$: Observable<boolean>;
+  customersLoading$: Observable<boolean>;
 
   constructor(private store: Store<AppState>) {
-    this.users$ = store.select(getUsers);
-    this.customers$ = store.select(getCustomers);
-    this.tags$ = store.select(getTags);
-    this.projects$ = store.select(getProjects);
+    this.usersLoading$ = store.select(UserSelectors.getFetchingInProgress);
+    this.tagsLoading$ = store.select(TagSelectors.getFetchingInProgress);
+    this.projectsLoading$ = store.select(ProjectSelectors.getFetchingInProgress);
+    this.customersLoading$ = store.select(CustomerSelectors.getFetchingInProgress);
+
+    this.users$ = store.select(UserSelectors.getUsers);
+    this.projects$ = store.select(ProjectSelectors.getProjects);
+    this.customers$ = store.select(CustomerSelectors.getCustomers);
+    this.tags$ = store.select(TagSelectors.getTags);
+
    }
 
   ngOnInit() {

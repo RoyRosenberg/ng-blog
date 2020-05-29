@@ -42,7 +42,6 @@ export class PostItemComponent implements OnInit {
   }
 
   customerSelectionChanged(event) {
-    console.log('cust changed', event);
     if (event.isUserInput) {
       this.projectOfCustomer = this.projects.filter(p => p.customerId === event.source.value);
       this.postInfo.patchValue({ projectId: this.projectOfCustomer[0].id });
