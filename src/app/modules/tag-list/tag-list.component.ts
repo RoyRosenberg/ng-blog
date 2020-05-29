@@ -12,10 +12,10 @@ import { TagSelectors } from 'src/app/store/tag';
 })
 export class TagListComponent implements OnInit {
   tags$: Observable<Tag[]>;
-  loading$: Observable<boolean>;
+  inProgress$: Observable<boolean>;
   constructor(private store: Store<AppState>) {
     this.tags$ = store.select(TagSelectors.getTags);
-    this.loading$ = store.select(TagSelectors.getFetchingInProgress);
+    this.inProgress$ = store.select(TagSelectors.getFetchingInProgress);
   }
 
   ngOnInit() {

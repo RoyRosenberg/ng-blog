@@ -1,0 +1,17 @@
+<h1>Customers</h1>
+
+<div *ngIf="(customers$ | async).length === 0 && (inProgress$ | async) === false">
+  <mat-card [style.backgroundColor]="'orange'">No Items Found</mat-card>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+  <div fxFlex="100" fxLayoutAlign="center center">
+    <mat-spinner *ngIf="(inProgress$ | async) && (customers$ | async).length === 0"></mat-spinner>
+  </div>
+</div>
+
+<div *ngIf="(customers$ | async).length > 0" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+  <div fxFlex="100">
+    <app-customer-table [customers]="customers$ | async"></app-customer-table>
+  </div>
+</div>
+<br />

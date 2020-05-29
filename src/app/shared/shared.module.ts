@@ -29,6 +29,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AreaComponent } from './widgets/area/area.component';
 import { CardComponent } from './widgets/card/card.component';
+import { CustomerTableComponent } from './widgets/customer-table/customer-table.component';
 import { PieComponent } from './widgets/pie/pie.component';
 import { PostItemComponent } from './widgets/post-item/post-item.component';
 import { PostSearchComponent } from './widgets/post-search/post-search.component';
@@ -60,7 +61,8 @@ export const BLOG_DATE_FORMATS = {
     PostSearchComponent,
     PostItemComponent,
     TagSelectionComponent,
-    TagTableComponent
+    TagTableComponent,
+    CustomerTableComponent
   ],
   imports: [
     CommonModule,
@@ -103,7 +105,8 @@ export const BLOG_DATE_FORMATS = {
     PostSearchComponent,
     ReactiveFormsModule,
     PostItemComponent,
-    TagTableComponent
+    TagTableComponent,
+    CustomerTableComponent
   ]
 })
 export class SharedModule { }

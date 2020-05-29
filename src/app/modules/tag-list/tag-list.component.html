@@ -1,4 +1,20 @@
 <h1>Tags</h1>
 
-<app-tag-table [tags]="tags$ | async" [loadingInProgress]="loading$ | async"></app-tag-table>
+<div *ngIf="(tags$ | async).length === 0 && (inProgress$ | async) === false">
+    <mat-card [style.backgroundColor]="'orange'">No Items Found</mat-card>
+</div>
+<div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+    <div fxFlex="100" fxLayoutAlign="center center">
+        <mat-spinner *ngIf="(inProgress$ | async) && (tags$ | async).length === 0"></mat-spinner>
+    </div>
+</div>
+
+
+<div *ngIf="(tags$ | async).length > 0" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+    <div fxFlex="100">
+        <app-tag-table [tags]="tags$ | async" [loadingInProgress]="inProgress$ | async"></app-tag-table>
+    </div>
+</div>
+<br />
+
 <br />

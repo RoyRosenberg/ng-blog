@@ -21,7 +21,7 @@ export class TagTableComponent implements OnInit {
   }
   dataSource = new MatTableDataSource<Tag>([]);
   displayedColumns: string[] = ['name', 'color'];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   searchTag = new FormControl();
   constructor() { }
 

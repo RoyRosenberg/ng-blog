@@ -1,0 +1,74 @@
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <mat-form-field fxFlex="80">
+    <mat-label>Search Customer</mat-label>
+    <input matInput placeholder="search Customers" [formControl]="searchCustomer">
+  </mat-form-field>
+  <a mat-raised-button routerLink="/customers/list"  fxLayoutAlign="end center" color="accent">
+    New Customer
+    <mat-icon>assignment_ind</mat-icon>
+  </a>
+</div>
+<br />
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+  <table mat-table [dataSource]="dataSource" fxFlex="100">
+    <!-- Company Column -->
+    <ng-container matColumnDef="company">
+      <th mat-header-cell fxFlex="40" fxLayoutAlign="start center" *matHeaderCellDef> Company </th>
+      <td mat-cell fxFlex="40" fxLayoutAlign="start center" *matCellDef="let element">
+        <mat-icon style="margin-right: 5px;" [style.color]="element.color">assignment_ind</mat-icon>
+        {{element.company}}
+      </td>
+    </ng-container>
+
+     <!-- Contact Column -->
+     <ng-container matColumnDef="contact">
+      <th mat-header-cell fxFlex="10" fxLayoutAlign="start center" *matHeaderCellDef> Contact </th>
+      <td mat-cell fxFlex="10" fxLayoutAlign="start center" *matCellDef="let element">
+        {{element.contact}}
+      </td>
+    </ng-container>
+
+    <!-- Phone Column -->
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell fxFlex="10" fxLayoutAlign="start center" *matHeaderCellDef> Phone </th>
+      <td mat-cell fxFlex="10" fxLayoutAlign="start center" *matCellDef="let element">
+        {{element.phone}}
+      </td>
+    </ng-container>
+
+    <!-- Address Column -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell fxFlex="25" fxLayoutAlign="start center" *matHeaderCellDef> Address </th>
+      <td mat-cell fxFlex="25" fxLayoutAlign="start center" *matCellDef="let element">
+        {{element.address}}
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell fxFlex="15" fxLayoutAlign="start center" *matHeaderCellDef> Actions </th>
+      <td mat-cell fxFlex="15" fxLayoutAlign="start center" *matCellDef="let element">
+        <button mat-mini-fab color="warn" matTooltip="delete customer" aria-label="delete tag">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" matTooltip="edit customer" aria-label="edit tag">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-mini-fab color="accent" matTooltip="projects" aria-label="projects">
+          <mat-icon>contact_mail</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"></tr>
+
+  </table>
+</div>
+
+<div fxLayout="row" style="background-color: white;" fxLayoutAlign="end center" fxLayoutGap="20px">
+  <div fxFlex="100" fxLayoutAlign="end center">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

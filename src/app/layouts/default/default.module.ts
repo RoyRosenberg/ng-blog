@@ -7,6 +7,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
+import { CustomerListComponent } from 'src/app/modules/customer-list/customer-list.component';
 import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
 import { PostEditComponent } from 'src/app/modules/post-edit/post-edit.component';
 import { PostListComponent } from 'src/app/modules/post-list/post-list.component';
@@ -27,7 +28,8 @@ import { DefaultComponent } from './default.component';
     DashboardComponent,
     PostListComponent,
     PostEditComponent,
-    TagListComponent
+    TagListComponent,
+    CustomerListComponent
   ],
   imports: [
     CommonModule,
