@@ -30,7 +30,7 @@ export class TagSelectionComponent {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       // tap(x => console.log(x)),
       startWith(null),
-      map((fruit: string | null) => fruit ? this._filter(fruit) : this.tags));
+      map((tagName: string | null) => tagName ? this._filter(tagName) : this.tags));
   }
 
   add(event: MatChipInputEvent): void {
@@ -40,7 +40,7 @@ export class TagSelectionComponent {
     const value = event.value;
     const searchedTag = this.stringToTag(value);
 
-    // Add our fruit
+    // Add our tag
     if (searchedTag !== null) {
       this.tagList.push(searchedTag);
     }
@@ -53,8 +53,8 @@ export class TagSelectionComponent {
     this.tagCtrl.setValue(null);
   }
 
-  remove(fruit: Tag): void {
-    const index = this.tagList.indexOf(fruit);
+  remove(tag: Tag): void {
+    const index = this.tagList.indexOf(tag);
 
     if (index >= 0) {
       this.tagList.splice(index, 1);
@@ -76,7 +76,7 @@ export class TagSelectionComponent {
     // console.log('val:', value);
     const filterValue = value?.toLowerCase();
 
-    return this.tags.filter(fruit => fruit.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.tags.filter(tag => tag.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
   private stringToTag(tagName: string): Tag {

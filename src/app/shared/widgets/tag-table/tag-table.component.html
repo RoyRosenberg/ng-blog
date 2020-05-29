@@ -1,0 +1,48 @@
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <mat-form-field fxFlex="100">
+    <mat-label>Search Tags</mat-label>
+    <input matInput placeholder="search Tags" [formControl]="searchTag">
+  </mat-form-field>
+  <a mat-raised-button routerLink="/tags/list"  fxLayoutAlign="end center" color="accent">
+    New Tag
+    <mat-icon>label</mat-icon>
+  </a>
+</div>
+<br />
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+  <table mat-table [dataSource]="dataSource" fxFlex="100">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> Name </th>
+      <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element">
+        <mat-icon style="margin-right: 5px;" [style.color]="element.color">label</mat-icon>
+        {{element.name}}
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="color">
+      <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> Actions </th>
+      <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element">
+        <button mat-mini-fab color="warn" matTooltip="delete post" aria-label="delete tag">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-mini-fab color="primary" matTooltip="edit post" aria-label="edit tag">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"></tr>
+
+  </table>
+</div>
+
+<div fxLayout="row" style="background-color: white;" fxLayoutAlign="end center" fxLayoutGap="20px">
+  <div fxFlex="100" fxLayoutAlign="end center">
+    <mat-spinner *ngIf="loadingInProgress" [diameter]="20"></mat-spinner>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

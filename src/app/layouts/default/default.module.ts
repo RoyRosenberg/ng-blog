@@ -10,6 +10,7 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
 import { PostEditComponent } from 'src/app/modules/post-edit/post-edit.component';
 import { PostListComponent } from 'src/app/modules/post-list/post-list.component';
+import { TagListComponent } from 'src/app/modules/tag-list/tag-list.component';
 import { DashboardService } from 'src/app/services/dashboard.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { CustomerModule } from 'src/app/store/customer/module';
@@ -26,6 +27,7 @@ import { DefaultComponent } from './default.component';
     DashboardComponent,
     PostListComponent,
     PostEditComponent,
+    TagListComponent
   ],
   imports: [
     CommonModule,

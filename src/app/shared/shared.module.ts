@@ -34,6 +34,7 @@ import { PostItemComponent } from './widgets/post-item/post-item.component';
 import { PostSearchComponent } from './widgets/post-search/post-search.component';
 import { PostTableComponent } from './widgets/post-table/post-table.component';
 import { TagSelectionComponent } from './widgets/tag-selection/tag-selection.component';
+import { TagTableComponent } from './widgets/tag-table/tag-table.component';
 
 export const BLOG_DATE_FORMATS = {
   parse: {
@@ -58,7 +59,8 @@ export const BLOG_DATE_FORMATS = {
     PostTableComponent,
     PostSearchComponent,
     PostItemComponent,
-    TagSelectionComponent
+    TagSelectionComponent,
+    TagTableComponent
   ],
   imports: [
     CommonModule,
@@ -100,7 +102,8 @@ export const BLOG_DATE_FORMATS = {
     MatSpinner,
     PostSearchComponent,
     ReactiveFormsModule,
-    PostItemComponent
+    PostItemComponent,
+    TagTableComponent
   ]
 })
 export class SharedModule { }
