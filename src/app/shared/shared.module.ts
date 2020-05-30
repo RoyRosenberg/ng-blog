@@ -17,12 +17,14 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -88,7 +90,9 @@ export const BLOG_DATE_FORMATS = {
     MatTooltipModule,
     MatStepperModule,
     MatChipsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    NgxMaterialTimepickerModule,
+    MatSlideToggleModule
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: BLOG_DATE_FORMATS },

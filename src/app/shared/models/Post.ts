@@ -7,4 +7,6 @@ export class Post {
     to: string;
     userId: number;
     projectId: number;
+    offline: boolean;
+    additionalHours: number;
 }

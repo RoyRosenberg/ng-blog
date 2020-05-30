@@ -1,15 +1,18 @@
 <mat-horizontal-stepper linear #stepper>
-  <mat-step [stepControl]="postInfo" errorMessage="fill all data">   
+  <mat-step [stepControl]="postInfo" errorMessage="fill all data">
     <form [formGroup]="postInfo">
       <ng-template matStepLabel>Post Information</ng-template>
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-        <mat-form-field fxFlex="80" appearance="outline">
+        <mat-form-field fxFlex="100" appearance="outline">
           <mat-label>Title</mat-label>
           <input matInput placeholder="Title" formControlName="title">
           <mat-error *ngIf="postInfo.get('title').hasError('required')">
             Title is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
         <mat-form-field fxFlex="20" appearance="outline">
           <mat-label>User</mat-label>
           <mat-select placeholder="User" formControlName="userId">
@@ -17,18 +20,6 @@
               {{user.userName}}
             </mat-option>
           </mat-select>
-        </mat-form-field>
-      </div>
-
-      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-        <mat-form-field fxFlex="20" appearance="outline">
-          <mat-label>Date</mat-label>
-          <input matInput [matDatepicker]="pickerFrom" formControlName="date">
-          <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
-          <mat-datepicker #pickerFrom></mat-datepicker>
-          <mat-error *ngIf="postInfo.get('date').hasError('required')">
-            Date is <strong>required</strong>
-          </mat-error>
         </mat-form-field>
 
         <mat-form-field fxFlex="40" appearance="outline">
@@ -49,6 +40,46 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <mat-form-field fxFlex="20" appearance="outline">
+          <mat-label>Date</mat-label>
+          <input matInput [matDatepicker]="pickerFrom" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+          <mat-datepicker #pickerFrom></mat-datepicker>
+          <mat-error *ngIf="postInfo.get('date').hasError('required')">
+            Date is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="20" appearance="outline">
+          <mat-label>From</mat-label>
+          <input matInput [ngxTimepicker]="pickerFrm" [format]="24" formControlName="from"> 
+          <ngx-material-timepicker-toggle [for]="pickerFrm" matSuffix>
+          </ngx-material-timepicker-toggle>
+          <ngx-material-timepicker #pickerFrm></ngx-material-timepicker>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="15" appearance="outline">
+          <mat-label>To</mat-label>
+          <input matInput [ngxTimepicker]="pickerTo" [format]="24" formControlName="to">
+          <ngx-material-timepicker-toggle [for]="pickerTo" matSuffix>
+          </ngx-material-timepicker-toggle>
+          <ngx-material-timepicker #pickerTo></ngx-material-timepicker>
+        </mat-form-field>
+
+        <mat-form-field fxFlex="20" appearance="outline">
+          <mat-label>Additional Hours</mat-label>
+          <input matInput placeholder="Additional Hours" formControlName="additionalHours">
+        </mat-form-field>
+
+        <mat-form-field fxFlex="20" appearance="outline">
+          <!-- <mat-label>Offline Hours</mat-label> -->
+          <input matInput hidden>
+          <mat-slide-toggle formControlName="offline">Offline Hours</mat-slide-toggle>
+        </mat-form-field>
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
@@ -56,8 +87,8 @@
       </div>
 
       <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
-        <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">         
-          <a mat-raised-button routerLink="/posts/list" color="warn">           
+        <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">
+          <a mat-raised-button routerLink="/posts/list" color="warn">
             <mat-icon>cancel</mat-icon>Cancel
           </a>
           <button mat-raised-button matStepperNext color="primary">Next
@@ -65,7 +96,6 @@
           </button>
         </div>
       </div>
-
 
     </form>
   </mat-step>
@@ -83,7 +113,7 @@
           <button mat-raised-button matStepperPrevious color="primary">
             <mat-icon>arrow_back_ios</mat-icon>Back
           </button>
-          <a mat-raised-button routerLink="/posts/list" color="warn">           
+          <a mat-raised-button routerLink="/posts/list" color="warn">
             <mat-icon>cancel</mat-icon>Cancel
           </a>
           <button mat-raised-button matStepperNext color="primary">Next
@@ -100,8 +130,8 @@
       <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">
         <button mat-raised-button matStepperPrevious color="primary">
           <mat-icon>arrow_back_ios</mat-icon>Back
-        </button>        
-        <a mat-raised-button routerLink="/posts/list" color="warn">           
+        </button>
+        <a mat-raised-button routerLink="/posts/list" color="warn">
           <mat-icon>cancel</mat-icon>Cancel
         </a>
         <button mat-raised-button matStepperNext color="primary">Save and Finish
