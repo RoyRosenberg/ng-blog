@@ -1,0 +1,33 @@
+<h1>New Tag</h1>
+<form [formGroup]="frmTag" (ngSubmit)="onFormSubmit()">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <mat-form-field fxFlex="20" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" formControlName="name">
+      <mat-error *ngIf="frmTag.get('name').hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>    
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <mat-form-field fxFlex="20" appearance="outline">
+      <mat-label>Color</mat-label>
+      <input matInput [ngxMatColorPicker]="picker" placeholder="Color" formControlName="color">
+      <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+      <ngx-mat-color-picker #picker></ngx-mat-color-picker>
+      <mat-error *ngIf="frmTag.get('color').hasError('required')">
+        Color is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <button type="submit" mat-raised-button color="primary">Save
+      <mat-icon>send</mat-icon>
+    </button>
+    <a mat-raised-button routerLink="/tags/list" color="warn">
+      <mat-icon>cancel</mat-icon>Cancel
+    </a>
+  </div>
+</form>

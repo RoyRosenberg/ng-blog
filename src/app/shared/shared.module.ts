@@ -1,3 +1,8 @@
+import {
+  MAT_COLOR_FORMATS,
+  NGX_MAT_COLOR_FORMATS,
+  NgxMatColorPickerModule,
+} from '@angular-material-components/color-picker';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -36,6 +41,7 @@ import { PieComponent } from './widgets/pie/pie.component';
 import { PostItemComponent } from './widgets/post-item/post-item.component';
 import { PostSearchComponent } from './widgets/post-search/post-search.component';
 import { PostTableComponent } from './widgets/post-table/post-table.component';
+import { TagItemComponent } from './widgets/tag-item/tag-item.component';
 import { TagSelectionComponent } from './widgets/tag-selection/tag-selection.component';
 import { TagTableComponent } from './widgets/tag-table/tag-table.component';
 
@@ -64,7 +70,8 @@ export const BLOG_DATE_FORMATS = {
     PostItemComponent,
     TagSelectionComponent,
     TagTableComponent,
-    CustomerTableComponent
+    CustomerTableComponent,
+    TagItemComponent
   ],
   imports: [
     CommonModule,
@@ -92,10 +99,12 @@ export const BLOG_DATE_FORMATS = {
     MatChipsModule,
     MatAutocompleteModule,
     NgxMaterialTimepickerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgxMatColorPickerModule
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: BLOG_DATE_FORMATS },
+    { provide: MAT_COLOR_FORMATS, useValue: NGX_MAT_COLOR_FORMATS },
   ],
   exports: [
     HeaderComponent,
@@ -110,7 +119,8 @@ export const BLOG_DATE_FORMATS = {
     ReactiveFormsModule,
     PostItemComponent,
     TagTableComponent,
-    CustomerTableComponent
+    CustomerTableComponent,
+    TagItemComponent
   ]
 })
 export class SharedModule { }

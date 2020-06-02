@@ -6,6 +6,7 @@ import { CustomerListComponent } from './modules/customer-list/customer-list.com
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PostEditComponent } from './modules/post-edit/post-edit.component';
 import { PostListComponent } from './modules/post-list/post-list.component';
+import { TagEditComponent } from './modules/tag-edit/tag-edit.component';
 import { TagListComponent } from './modules/tag-list/tag-list.component';
 
 
@@ -25,6 +26,7 @@ const routes: Routes = [
         path: 'tags',
         children: [
           { path: 'list', component: TagListComponent },
+          { path: 'edit', component: TagEditComponent },
         ]
       },
       {
