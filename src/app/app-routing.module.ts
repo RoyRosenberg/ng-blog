@@ -26,7 +26,8 @@ const routes: Routes = [
         path: 'tags',
         children: [
           { path: 'list', component: TagListComponent },
-          { path: 'edit', component: TagEditComponent },
+          { path: 'add', component: TagEditComponent },
+          { path: 'edit/:id', component: TagEditComponent },
         ]
       },
       {

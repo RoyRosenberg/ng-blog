@@ -22,4 +22,10 @@ export class TagService {
     const body = JSON.stringify(tag);
     return this.http.post<Tag>(`${this.baseUrl}/Tags`, body, { headers: header });
   }
+
+  updateTag(tag: Tag): Observable<Tag> {
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = JSON.stringify(tag);
+    return this.http.put<Tag>(`${this.baseUrl}/Tags`, body, { headers: header });
+  }
 }

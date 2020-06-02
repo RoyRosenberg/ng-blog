@@ -4,6 +4,10 @@ import { Tag } from 'src/app/shared/models/tag';
 import { AppState } from 'src/app/store/appState';
 
 import * as tags from '../../store/tag';
+import { ActivatedRoute } from '@angular/router';
+import { TagSelectors } from '../../store/tag';
+import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tag-edit',
@@ -11,13 +15,26 @@ import * as tags from '../../store/tag';
   styleUrls: ['./tag-edit.component.css']
 })
 export class TagEditComponent implements OnInit {
-  tag = new Tag();
-  constructor(private store: Store<AppState>) { }
+  tag$: Observable<Tag>;
+  constructor(private store: Store<AppState>, private route: ActivatedRoute) {
+    this.tag$ = store.select(TagSelectors.getSelectedTag);
+    route.params.subscribe(params => {
+      const tagId = +params.id || 0;
+      if (tagId !== 0) {
+        store.dispatch(new tags.TagActions.SetSelectedTag(tagId));
+      }
+      else { store.dispatch(new tags.TagActions.InitSelectedTag()); }
+    });
+  }
 
   ngOnInit() {
   }
 
   saveTag(tag: Tag) {
-    this.store.dispatch(new tags.TagActions.CreateTag(tag));
+    if (tag.id === 0) {
+      this.store.dispatch(new tags.TagActions.CreateTag(tag));
+    } else {
+      this.store.dispatch(new tags.TagActions.UpdateTag(tag));
+    }
   }
 }

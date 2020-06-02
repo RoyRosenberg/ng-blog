@@ -10,6 +10,15 @@ export enum TagActionTypes {
     CreateTag = '[Tag] Create',
     CreateTagSuccess = '[Tag] Create Success',
     CreateTagFailed = '[Tag] Create Failed',
+
+    UpdateTag = '[Tag] Update',
+    UpdateTagSuccess = '[Tag] Update Success',
+    UpdateTagFailed = '[Tag] Update Failed',
+
+    InitSelectedTag = '[Tag] Init Selected',
+    SetSelectedTag = '[Tag] Set Selected',
+    SetSelectedTagSuccess = '[Tag] Set Selected Success',
+    SetSelectedTagFailed = '[Tag] Set Selected Failed',
 }
 
 export class LoadTags implements Action {
@@ -41,7 +50,40 @@ export class CreateTagFailed implements Action {
     readonly type = TagActionTypes.CreateTagFailed;
 }
 
+export class UpdateTag implements Action {
+    readonly type = TagActionTypes.UpdateTag;
+    constructor(public payload: Tag) { }
+}
+
+export class UpdateTagSuccess implements Action {
+    readonly type = TagActionTypes.UpdateTagSuccess;
+}
+
+export class UpdateTagFailed implements Action {
+    readonly type = TagActionTypes.UpdateTagFailed;
+}
+
+export class InitSelectedTag implements Action {
+    readonly type = TagActionTypes.InitSelectedTag;
+}
+
+export class SetSelectedTag implements Action {
+    readonly type = TagActionTypes.SetSelectedTag;
+    constructor(public payload: number) { }
+}
+
+export class SetSelectedTagSuccess implements Action {
+    readonly type = TagActionTypes.SetSelectedTagSuccess;
+    constructor(public payload: Tag) { }
+}
+
+export class SetSelectedTagFailed implements Action {
+    readonly type = TagActionTypes.SetSelectedTagFailed;
+}
+
 
 export type TagsActions = LoadTags
     | LoadTagsSuccess | LoadTagsFailed
-    | CreateTag | CreateTagSuccess | CreateTagFailed ;
+    | CreateTag | CreateTagSuccess | CreateTagFailed
+    | UpdateTag | UpdateTagSuccess | UpdateTagFailed
+    | InitSelectedTag | SetSelectedTag | SetSelectedTagSuccess | SetSelectedTagFailed;

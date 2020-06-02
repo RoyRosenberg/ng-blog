@@ -3,7 +3,7 @@
     <mat-label>Search Tags</mat-label>
     <input matInput placeholder="search Tags" [formControl]="searchTag">
   </mat-form-field>
-  <a mat-raised-button routerLink="/tags/edit"  fxLayoutAlign="end center" color="accent">
+  <a mat-raised-button routerLink="/tags/add"  fxLayoutAlign="end center" color="accent">
     New Tag
     <mat-icon>label</mat-icon>
   </a>
@@ -28,9 +28,9 @@
         <button mat-mini-fab color="warn" matTooltip="delete post" aria-label="delete tag">
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-mini-fab color="primary" matTooltip="edit post" aria-label="edit tag">
+        <a mat-mini-fab [routerLink]="['/tags/edit/', element.id]" color="primary" matTooltip="edit post" aria-label="edit tag">
           <mat-icon>edit</mat-icon>
-        </button>
+        </a>
       </td>
     </ng-container>
 
