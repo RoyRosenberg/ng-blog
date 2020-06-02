@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
@@ -10,7 +11,8 @@ import { TagActions } from '../tag';
 export class TagEffects {
     constructor(
         private actions$: Actions,
-        private tagService: TagService
+        private tagService: TagService,
+        private router: Router
     ) { }
 
     @Effect()
@@ -28,4 +30,18 @@ export class TagEffects {
                 )
         )
     );
+
+    @Effect()
+    createTag = this.actions$.pipe(
+        ofType<TagActions.CreateTag>(TagActions.TagActionTypes.CreateTag),
+        mergeMap(action =>
+            this.tagService.createTag(action.payload).pipe(
+                map(res => new TagActions.CreateTagSuccess(res)),
+                tap(res => this.router.navigate(['/tags/list']),
+                catchError((err) => {
+                    console.log(err);
+                    return of(new TagActions.CreateTagFailed());
+                })
+            ))
+    ));
 }
