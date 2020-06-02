@@ -1,7 +1,7 @@
 import {
-  MAT_COLOR_FORMATS,
-  NGX_MAT_COLOR_FORMATS,
-  NgxMatColorPickerModule,
+    MAT_COLOR_FORMATS,
+    NGX_MAT_COLOR_FORMATS,
+    NgxMatColorPickerModule,
 } from '@angular-material-components/color-picker';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -23,6 +23,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule, MatSpinner } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -100,7 +101,8 @@ export const BLOG_DATE_FORMATS = {
     MatAutocompleteModule,
     NgxMaterialTimepickerModule,
     MatSlideToggleModule,
-    NgxMatColorPickerModule
+    NgxMatColorPickerModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: BLOG_DATE_FORMATS },

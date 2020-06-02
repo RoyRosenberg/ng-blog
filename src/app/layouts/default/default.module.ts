@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { CustomerListComponent } from 'src/app/modules/customer-list/customer-list.component';
@@ -47,6 +48,7 @@ import { DefaultComponent } from './default.component';
     UserModule,
     CustomerModule,
     ProjectModule,
+    MatSnackBarModule,
     TagModule
   ],
   providers: [DashboardService]

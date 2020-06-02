@@ -7,3 +7,15 @@ body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.alert-warn {
+    background: sandybrown;
+}
+
+.alert-success {
+    background: green;
+}
+
+.alert-error {
+    background: orangered;
+}

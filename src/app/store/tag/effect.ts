@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { AlertService } from 'src/app/services/alert.service';
 import { TagService } from 'src/app/services/tag.service';
 
 import { TagActions } from '../tag';
@@ -12,7 +13,8 @@ export class TagEffects {
     constructor(
         private actions$: Actions,
         private tagService: TagService,
-        private router: Router
+        private router: Router,
+        private alertService: AlertService
     ) { }
 
     @Effect()
@@ -37,11 +39,15 @@ export class TagEffects {
         mergeMap(action =>
             this.tagService.createTag(action.payload).pipe(
                 map(res => new TagActions.CreateTagSuccess(res)),
-                tap(res => this.router.navigate(['/tags/list']),
-                catchError((err) => {
+                tap(res => {
+                    this.router.navigate(['/tags/list']);
+                    this.alertService.success('Tag Created!✨🎉');
+                }, catchError((err) => {
                     console.log(err);
+                    this.alertService.error('Tag Creation Failed 😥');
                     return of(new TagActions.CreateTagFailed());
                 })
-            ))
-    ));
+                ))
+        )
+    );
 }
