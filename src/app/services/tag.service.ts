@@ -28,4 +28,9 @@ export class TagService {
     const body = JSON.stringify(tag);
     return this.http.put<Tag>(`${this.baseUrl}/Tags`, body, { headers: header });
   }
+
+  deleteTag(tagId: number) {
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.delete<number>(`${this.baseUrl}/Tags/${tagId}`, { headers: header });
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -19,6 +19,7 @@ export class TagTableComponent implements OnInit {
     this.dataSource.data = values;
     this.dataSource.paginator = this.paginator;
   }
+  @Output() deleteClick = new EventEmitter<number>();
   dataSource = new MatTableDataSource<Tag>([]);
   displayedColumns: string[] = ['name', 'color'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
@@ -35,6 +36,10 @@ export class TagTableComponent implements OnInit {
           t.name.toLocaleLowerCase().indexOf(name.toLocaleLowerCase()) === 0);
       }
     });
+  }
+
+  deleteTag(tagId: number) {
+    this.deleteClick.emit(tagId);
   }
 
 }

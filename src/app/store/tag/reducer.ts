@@ -1,6 +1,5 @@
 import { TagActionTypes, TagsActions } from './actions';
 import { TagState } from './state';
-import { Tag } from 'src/app/shared/models/tag';
 
 export const initState: TagState = {
     fetching: false,
@@ -12,6 +11,7 @@ export function tagsReducer(state: TagState = initState, action: TagsActions): T
     switch (action.type) {
         case TagActionTypes.GetTags:
         case TagActionTypes.CreateTag:
+        case TagActionTypes.DeleteTag:
             return {
                 ...state,
                 fetching: true
@@ -70,6 +70,30 @@ export function tagsReducer(state: TagState = initState, action: TagsActions): T
             return {
                 ...state,
                 selectedTag: action.payload
+            };
+        case TagActionTypes.DeleteTagSuccess:
+            const newTagArr = [...state.tags];
+            const tagsToDelete = newTagArr.filter(t => t.id === action.payload);
+            if (tagsToDelete.length > 0) {
+                const ind = newTagArr.indexOf(tagsToDelete[0]);
+                newTagArr.splice(ind, 1);
+                return {
+                    ...state,
+                    fetching: false,
+                    tags: newTagArr
+                };
+            } else {
+                return {
+                    ...state,
+                    fetching: false
+                };
+            }
+
+        case TagActionTypes.DeleteTagFailed:
+        case TagActionTypes.DeleteTagCancelled:
+            return {
+                ...state,
+                fetching: false
             };
         default:
             return state;

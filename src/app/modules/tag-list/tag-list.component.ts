@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Tag } from 'src/app/shared/models/tag';
 import { AppState } from 'src/app/store/appState';
-import { TagSelectors } from 'src/app/store/tag';
+import { TagActions, TagSelectors } from 'src/app/store/tag';
 
 @Component({
   selector: 'app-tag-list',
@@ -19,6 +19,10 @@ export class TagListComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  deleteTag(tagId: number) {
+    this.store.dispatch(new TagActions.DeleteTag(tagId));
   }
 
 }

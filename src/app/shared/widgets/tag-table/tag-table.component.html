@@ -25,7 +25,7 @@
     <ng-container matColumnDef="color">
       <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> Actions </th>
       <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element">
-        <button mat-mini-fab color="warn" matTooltip="delete post" aria-label="delete tag">
+        <button mat-mini-fab color="warn" matTooltip="delete post" (click)="deleteTag(element.id)" aria-label="delete tag">
           <mat-icon>delete</mat-icon>
         </button>
         <a mat-mini-fab [routerLink]="['/tags/edit/', element.id]" color="primary" matTooltip="edit post" aria-label="edit tag">

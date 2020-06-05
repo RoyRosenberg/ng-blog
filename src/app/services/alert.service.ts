@@ -24,4 +24,8 @@ export class AlertService {
     this.snackBar.open(`⛔ ${message}`, 'Dismiss', { panelClass: 'alert-error', duration: 2000 });
   }
 
+  prompt(message): boolean {
+    return confirm(message);
+  }
+
 }

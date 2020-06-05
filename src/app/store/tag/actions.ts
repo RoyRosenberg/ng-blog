@@ -19,6 +19,11 @@ export enum TagActionTypes {
     SetSelectedTag = '[Tag] Set Selected',
     SetSelectedTagSuccess = '[Tag] Set Selected Success',
     SetSelectedTagFailed = '[Tag] Set Selected Failed',
+
+    DeleteTag = '[Tag] Delete',
+    DeleteTagSuccess = '[Tag] Delete Success',
+    DeleteTagFailed = '[Tag] Delete Failed',
+    DeleteTagCancelled = '[Tag] Delete Cancelled',
 }
 
 export class LoadTags implements Action {
@@ -81,9 +86,28 @@ export class SetSelectedTagFailed implements Action {
     readonly type = TagActionTypes.SetSelectedTagFailed;
 }
 
+export class DeleteTag implements Action {
+    readonly type = TagActionTypes.DeleteTag;
+    constructor(public payload: number) { }
+}
+
+export class DeleteTagSuccess implements Action {
+    readonly type = TagActionTypes.DeleteTagSuccess;
+    constructor(public payload: number) { }
+}
+
+export class DeleteTagFailed implements Action {
+    readonly type = TagActionTypes.DeleteTagFailed;
+}
+
+export class DeleteTagCancelled implements Action {
+    readonly type = TagActionTypes.DeleteTagCancelled;
+}
+
 
 export type TagsActions = LoadTags
     | LoadTagsSuccess | LoadTagsFailed
     | CreateTag | CreateTagSuccess | CreateTagFailed
     | UpdateTag | UpdateTagSuccess | UpdateTagFailed
-    | InitSelectedTag | SetSelectedTag | SetSelectedTagSuccess | SetSelectedTagFailed;
+    | InitSelectedTag | SetSelectedTag | SetSelectedTagSuccess | SetSelectedTagFailed
+    | DeleteTag | DeleteTagSuccess | DeleteTagFailed | DeleteTagCancelled;

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
 import { AlertService } from 'src/app/services/alert.service';
 import { TagService } from 'src/app/services/tag.service';
 
-import { TagActions } from '../tag';
 import { AppState } from '../appState';
-import { Store } from '@ngrx/store';
+import { TagActions } from '../tag';
 
 @Injectable()
 export class TagEffects {
@@ -88,6 +88,26 @@ export class TagEffects {
                 const cloned = { ...filtered[0] };
                 return of(new TagActions.SetSelectedTagSuccess(cloned));
             }
+        })
+    );
+
+    @Effect()
+    deleteTag = this.actions$.pipe(
+        ofType<TagActions.DeleteTag>(TagActions.TagActionTypes.DeleteTag),
+        mergeMap(action => {
+            const approvedByUser = this.alertService.prompt('Are you sure?');
+            if (approvedByUser) {
+                return this.tagService.deleteTag(action.payload).pipe(
+                    map(tagId => new TagActions.DeleteTagSuccess(tagId)),
+                    tap(tagId =>
+                        this.alertService.success('Tag Deleted 👍'),
+                        catchError(err => {
+                            console.log(err);
+                            this.alertService.error('Tag Deletion Failed 😥');
+                            return of(new TagActions.DeleteTagFailed());
+                        })
+                    ));
+            } else { return of(new TagActions.DeleteTagCancelled()); }
         })
     );
 }

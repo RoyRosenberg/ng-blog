@@ -12,7 +12,7 @@
 
 <div *ngIf="(tags$ | async).length > 0" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
     <div fxFlex="100">
-        <app-tag-table [tags]="tags$ | async" [loadingInProgress]="inProgress$ | async"></app-tag-table>
+        <app-tag-table [tags]="tags$ | async" [loadingInProgress]="inProgress$ | async" (deleteClick)="deleteTag($event)"></app-tag-table>
     </div>
 </div>
 <br />
