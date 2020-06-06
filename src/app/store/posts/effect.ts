@@ -18,7 +18,7 @@ export class PostEffects {
 
     @Effect()
     loadPosts$ = this.actions$.pipe(
-        tap(() => console.log('In posts Effect')),
+        // tap(() => console.log('In posts Effect')),
         ofType(PostActions.PostActionTypes.GetPosts),
         withLatestFrom(this.store),
         mergeMap(combined =>

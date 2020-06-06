@@ -22,7 +22,7 @@ export class TagEffects {
 
     @Effect()
     loadTags$ = this.actions$.pipe(
-        tap(() => console.log('In Tag Effect')),
+        // tap(() => console.log('In Tag Effect')),
         ofType(TagActions.TagActionTypes.GetTags),
         mergeMap(combined =>
             this.tagService.getTags()

@@ -1,0 +1,17 @@
+.tab-icon {
+  margin-right: 8px;
+}
+
+button, a {
+  visibility: hidden;
+}
+
+tr {
+  cursor: pointer;
+}
+
+tr:hover {
+  button, a {
+    visibility: visible;
+  }
+}

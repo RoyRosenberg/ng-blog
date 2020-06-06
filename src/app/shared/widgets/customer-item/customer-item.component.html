@@ -1,0 +1,113 @@
+<mat-tab-group>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">assignment_ind</mat-icon>
+            Customer Info
+        </ng-template>
+        <h1>{{frmCustomer.get('company').value}}</h1>
+        <form [formGroup]="frmCustomer" (ngSubmit)="onFormSubmit()">
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+                <mat-form-field fxFlex="50" appearance="outline">
+                    <mat-label>Company</mat-label>
+                    <input matInput placeholder="Company" formControlName="company">
+                    <mat-error *ngIf="frmCustomer.get('company').hasError('required')">
+                        Name is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+                <mat-form-field fxFlex="50" appearance="outline">
+                    <mat-label>Contact</mat-label>
+                    <input matInput placeholder="Contact" formControlName="contact">
+                    <mat-error *ngIf="frmCustomer.get('contact').hasError('required')">
+                        Contact is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+                <mat-form-field fxFlex="50" appearance="outline">
+                    <mat-label>Address</mat-label>
+                    <input matInput placeholder="Address" formControlName="address">
+                    <mat-error *ngIf="frmCustomer.get('address').hasError('required')">
+                        Address is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+                <mat-form-field fxFlex="20" appearance="outline">
+                    <mat-label>Color</mat-label>
+                    <input matInput [ngxMatColorPicker]="picker" placeholder="Color" formControlName="color">
+                    <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+                    <ngx-mat-color-picker #picker></ngx-mat-color-picker>
+                    <mat-error *ngIf="frmCustomer.get('color').hasError('required')">
+                        Color is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+                <div fxFlex="30" fxLayoutGap="20px" fxLayoutAlign="start center">
+                    <button type="submit" mat-raised-button color="primary">Save
+                        <mat-icon>send</mat-icon>
+                    </button>
+                    <a mat-raised-button routerLink="/customers/list" color="warn">
+                        <mat-icon>cancel</mat-icon>Cancel
+                    </a>
+                </div>
+            </div>
+        </form>
+    </mat-tab>
+
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="tab-icon">contact_mail</mat-icon>
+            Projects
+        </ng-template>
+        <h1>Projects</h1>
+
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+            <table mat-table [dataSource]="dataSource" fxFlex="100">
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell fxFlex="40" fxLayoutAlign="start center" *matHeaderCellDef> Name </th>
+                    <td mat-cell fxFlex="40" fxLayoutAlign="start center" *matCellDef="let element">
+                        {{element.name}}
+                    </td>
+                </ng-container>
+
+                <!-- Date Column -->
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell fxFlex="10" fxLayoutAlign="start center" *matHeaderCellDef> Date </th>
+                    <td mat-cell fxFlex="10" fxLayoutAlign="start center" *matCellDef="let element">
+                        {{element.date | date: 'dd/MM/yyyy'}}
+                    </td>
+                </ng-container>
+
+                <!-- State Column -->
+                <ng-container matColumnDef="state">
+                    <th mat-header-cell fxFlex="10" fxLayoutAlign="start center" *matHeaderCellDef> State </th>
+                    <td mat-cell fxFlex="10" fxLayoutAlign="start center" *matCellDef="let element">
+                        {{element.state}}
+                    </td>
+                </ng-container>
+
+                <!-- Actions Column -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell fxFlex="15" fxLayoutAlign="start center" *matHeaderCellDef> Actions </th>
+                    <td mat-cell fxFlex="15" fxLayoutGap="5px" fxLayoutAlign="start center" *matCellDef="let element">
+                        <button mat-mini-fab color="warn" matTooltip="delete project" aria-label="delete tag">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        <a mat-mini-fab [routerLink]="['/customers/edit/', element.id]" color="primary"
+                            matTooltip="edit project" aria-label="edit tag">
+                            <mat-icon>edit</mat-icon>
+                        </a>                       
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"></tr>
+
+            </table>
+        </div>
+    </mat-tab>
+
+</mat-tab-group>

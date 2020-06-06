@@ -1,7 +1,7 @@
 import {
-    MAT_COLOR_FORMATS,
-    NGX_MAT_COLOR_FORMATS,
-    NgxMatColorPickerModule,
+  MAT_COLOR_FORMATS,
+  NGX_MAT_COLOR_FORMATS,
+  NgxMatColorPickerModule,
 } from '@angular-material-components/color-picker';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -26,6 +26,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
@@ -37,6 +38,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AreaComponent } from './widgets/area/area.component';
 import { CardComponent } from './widgets/card/card.component';
+import { CustomerItemComponent } from './widgets/customer-item/customer-item.component';
 import { CustomerTableComponent } from './widgets/customer-table/customer-table.component';
 import { PieComponent } from './widgets/pie/pie.component';
 import { PostItemComponent } from './widgets/post-item/post-item.component';
@@ -72,7 +74,8 @@ export const BLOG_DATE_FORMATS = {
     TagSelectionComponent,
     TagTableComponent,
     CustomerTableComponent,
-    TagItemComponent
+    TagItemComponent,
+    CustomerItemComponent
   ],
   imports: [
     CommonModule,
@@ -102,7 +105,8 @@ export const BLOG_DATE_FORMATS = {
     NgxMaterialTimepickerModule,
     MatSlideToggleModule,
     NgxMatColorPickerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTabsModule
   ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: BLOG_DATE_FORMATS },
@@ -122,7 +126,8 @@ export const BLOG_DATE_FORMATS = {
     PostItemComponent,
     TagTableComponent,
     CustomerTableComponent,
-    TagItemComponent
+    TagItemComponent,
+    CustomerItemComponent
   ]
 })
 export class SharedModule { }

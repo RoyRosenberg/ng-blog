@@ -52,9 +52,9 @@
         <button mat-mini-fab color="warn" matTooltip="delete customer" aria-label="delete tag">
           <mat-icon>delete</mat-icon>
         </button>
-        <button mat-mini-fab color="primary" matTooltip="edit customer" aria-label="edit tag">
+        <a mat-mini-fab [routerLink]="['/customers/edit/', element.id]" color="primary" matTooltip="edit customer" aria-label="edit tag">
           <mat-icon>edit</mat-icon>
-        </button>
+        </a>
         <button mat-mini-fab color="accent" matTooltip="projects" aria-label="projects">
           <mat-icon>contact_mail</mat-icon>
         </button>

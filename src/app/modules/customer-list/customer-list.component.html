@@ -11,7 +11,7 @@
 
 <div *ngIf="(customers$ | async).length > 0" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
   <div fxFlex="100">
-    <app-customer-table [customers]="customers$ | async"></app-customer-table>
+    <app-customer-table [customers]="customers$ | async" (editCustomerClick)="editCustomer($event)"></app-customer-table>
   </div>
 </div>
 <br />

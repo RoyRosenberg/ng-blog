@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
+import { CustomerEditComponent } from 'src/app/modules/customer-edit/customer-edit.component';
 import { CustomerListComponent } from 'src/app/modules/customer-list/customer-list.component';
 import { DashboardComponent } from 'src/app/modules/dashboard/dashboard.component';
 import { PostEditComponent } from 'src/app/modules/post-edit/post-edit.component';
@@ -32,7 +33,8 @@ import { DefaultComponent } from './default.component';
     PostEditComponent,
     TagListComponent,
     CustomerListComponent,
-    TagEditComponent
+    TagEditComponent,
+    CustomerEditComponent
   ],
   imports: [
     CommonModule,

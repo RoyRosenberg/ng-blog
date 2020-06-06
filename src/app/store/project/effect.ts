@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { ProjectService } from 'src/app/services/project.service';
 
 import { ProjectActions } from '../project';
@@ -15,7 +15,7 @@ export class ProjectEffects {
 
     @Effect()
     loadProjects$ = this.actions$.pipe(
-        tap(() => console.log('In Project Effect')),
+        // tap(() => console.log('In Project Effect')),
         ofType(ProjectActions.ProjectActionTypes.GetProjects),
         mergeMap(combined =>
             this.projectService.getProjects()

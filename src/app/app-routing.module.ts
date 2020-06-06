@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { DefaultComponent } from './layouts/default/default.component';
+import { CustomerEditComponent } from './modules/customer-edit/customer-edit.component';
 import { CustomerListComponent } from './modules/customer-list/customer-list.component';
 import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PostEditComponent } from './modules/post-edit/post-edit.component';
@@ -34,6 +35,7 @@ const routes: Routes = [
         path: 'customers',
         children: [
           { path: 'list', component: CustomerListComponent },
+          { path: 'edit/:id', component: CustomerEditComponent },
         ]
       },
     ]

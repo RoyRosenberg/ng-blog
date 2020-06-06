@@ -3,7 +3,8 @@ import { CustomerState } from './state';
 
 export const initState: CustomerState = {
     fetching: false,
-    customers: []
+    customers: [],
+    selectedCustomerId: 0
 };
 
 export function customerReducer(state: CustomerState = initState, action: CustomersActions): CustomerState {
@@ -23,6 +24,12 @@ export function customerReducer(state: CustomerState = initState, action: Custom
             return {
                 ...state,
                 fetching: false
+            };
+        case CustomerActionTypes.SelectCustomer:
+            return {
+                ...state,
+                fetching: false,
+                selectedCustomerId: action.payload
             };
         default:
             return state;

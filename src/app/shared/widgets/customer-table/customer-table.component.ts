@@ -17,7 +17,7 @@ export class CustomerTableComponent implements OnInit {
   set customers(values: Customer[]) {
     this.customerList = values;
     this.dataSource.data = values;
-    console.log('setting paginator');
+    // console.log('setting paginator');
     this.dataSource.paginator = this.paginator;
   }
   dataSource = new MatTableDataSource<Customer>([]);

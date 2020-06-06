@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import { CustomerService } from 'src/app/services/customer.service';
 
 import { CustomerActions } from '../customer';
@@ -15,7 +15,7 @@ export class CustomerEffects {
 
     @Effect()
     loadCustomers$ = this.actions$.pipe(
-        tap(() => console.log('In customer Effect')),
+        // tap(() => console.log('In customer Effect')),
         ofType(CustomerActions.CustomerActionTypes.GetCustomers),
         mergeMap(combined =>
             this.custService.getCustomers()

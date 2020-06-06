@@ -1,4 +1,6 @@
-<h1>New Tag</h1>
+<h1 *ngIf="frmTag.controls.id.value === 0">New Tag</h1>
+<h1 *ngIf="frmTag.controls.id.value !== 0">Edit Tag</h1>
+
 <form [formGroup]="frmTag" (ngSubmit)="onFormSubmit()">
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
     <mat-form-field fxFlex="20" appearance="outline">
