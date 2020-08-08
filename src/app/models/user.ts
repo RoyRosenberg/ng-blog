@@ -2,5 +2,5 @@ export class User {
     id: number;
     userName: string;
     color: string;
-    emailAddress: string;
+    email: string;
 }

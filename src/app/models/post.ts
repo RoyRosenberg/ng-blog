@@ -1,3 +1,6 @@
+import { Project } from './project';
+import { User } from './user';
+
 export class Post {
     id: number;
     title: string;
@@ -9,4 +12,6 @@ export class Post {
     projectId: number;
     offline: boolean;
     additionalHours: number;
+    user: User;
+    project: Project;
 }

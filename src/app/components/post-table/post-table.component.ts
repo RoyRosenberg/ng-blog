@@ -2,9 +2,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
-import { Post } from '../../models/Post';
-import { PagingInfo } from '../../models/postFilter';
+import { Post } from 'src/app/models/Post';
+import { PagingInfo } from 'src/app/models/postFilter';
 
 @Component({
   selector: 'app-post-table',

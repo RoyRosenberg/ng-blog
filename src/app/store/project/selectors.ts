@@ -1,4 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import * as customerStore from 'src/app/store/customer';
 
 import { getSelectedCustomer } from '../customer/selectors';
 import { ProjectState } from './state';
@@ -7,7 +8,19 @@ const getProjectsFeatureState = createFeatureSelector<ProjectState>('projects');
 
 export const getProjects = createSelector(
     getProjectsFeatureState,
-    state => state.projects
+    customerStore.CustomerSelectors.getCustomers,
+    (state, customers) => {
+        return state.projects.map(p => {
+            const proj = { ...p };
+            const cust = customers.find(c => c.id === proj.customerId);
+            if (cust) {
+                proj.customer = cust;
+            } else {
+                proj.customer = { id: 0, company: 'loading', contact: 'loading', phone: '', address: '', color: '' };
+            }
+            return proj;
+        });
+    }
 );
 export const getFetchingInProgress = createSelector(
     getProjectsFeatureState,

@@ -1,3 +1,5 @@
+import { Customer } from './customer';
+
 export class Project {
     id: number;
     name: string;
@@ -5,6 +7,7 @@ export class Project {
     date: Date;
     state: ProjectStatus;
     customerId: number;
+    customer: Customer;
 }
 
 export enum ProjectStatus {
