@@ -10,6 +10,7 @@ export const initState: CustomerState = {
 export function customerReducer(state: CustomerState = initState, action: CustomersActions): CustomerState {
     switch (action.type) {
         case CustomerActionTypes.GetCustomers:
+        case CustomerActionTypes.UpdateCustomer:
             return {
                 ...state,
                 fetching: true
@@ -30,6 +31,21 @@ export function customerReducer(state: CustomerState = initState, action: Custom
                 ...state,
                 fetching: false,
                 selectedCustomerId: action.payload
+            };
+        case CustomerActionTypes.UpdateCustomerFailed:
+            return {
+                ...state,
+                fetching: false
+            };
+        case CustomerActionTypes.UpdateCustomerSuccess:
+            const custList = [...state.customers];
+            const filtered = custList.filter(t => t.id === action.payload.id);
+            const index = custList.indexOf(filtered[0]);
+            custList[index] = action.payload;
+            return {
+                ...state,
+                fetching: false,
+                customers: custList
             };
         default:
             return state;

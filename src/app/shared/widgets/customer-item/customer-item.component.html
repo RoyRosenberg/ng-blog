@@ -17,6 +17,15 @@
             </div>
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
                 <mat-form-field fxFlex="50" appearance="outline">
+                    <mat-label>Phone</mat-label>
+                    <input matInput placeholder="Phone" formControlName="phone">
+                    <mat-error *ngIf="frmCustomer.get('phone').hasError('required')">
+                        Phone is <strong>required</strong>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+                <mat-form-field fxFlex="50" appearance="outline">
                     <mat-label>Contact</mat-label>
                     <input matInput placeholder="Contact" formControlName="contact">
                     <mat-error *ngIf="frmCustomer.get('contact').hasError('required')">
@@ -99,7 +108,7 @@
                         <a mat-mini-fab [routerLink]="['/customers/edit/', element.id]" color="primary"
                             matTooltip="edit project" aria-label="edit tag">
                             <mat-icon>edit</mat-icon>
-                        </a>                       
+                        </a>
                     </td>
                 </ng-container>
 

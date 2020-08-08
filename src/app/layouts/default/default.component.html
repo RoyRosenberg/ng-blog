@@ -1,7 +1,7 @@
 <app-header (toggleSideBar)="sideBarToggler()"></app-header>
 
 <mat-drawer-container>
-    <mat-drawer mode="side" [opened]="sideBarOpen">
+    <mat-drawer mode="side" [opened]="sideBarOpen" fxHide.lt-md>
         <app-sidebar></app-sidebar>
     </mat-drawer>
     <mat-drawer-content>

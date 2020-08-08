@@ -34,7 +34,7 @@ export class PostItemComponent implements OnInit {
       from: ['09:00', Validators.required],
       to: ['18:00', Validators.required],
       offline: [false],
-      additionalHours: [''],
+      additionalHours: [0],
       customerId: [this.customers[0].id, Validators.required],
       projectId: [0, Validators.required],
       tagControl: []

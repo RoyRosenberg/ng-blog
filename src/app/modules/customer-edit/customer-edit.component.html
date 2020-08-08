@@ -5,5 +5,5 @@
 </div>
 
 <ng-template #customerPanel>
-    <app-customer-item [customer]="customer$ | async" [projects]="projects$ | async"></app-customer-item>
+    <app-customer-item [customer]="customer$ | async" [projects]="projects$ | async" (customerSave)="customerSave($event)"></app-customer-item>
 </ng-template>

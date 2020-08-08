@@ -39,4 +39,7 @@ export class CustomerEditComponent implements OnInit {
   ngOnInit() {
   }
 
+  customerSave(customer: Customer) {
+    this.store.dispatch(new CustomerActions.UpdateCustomer(customer));
+  }
 }

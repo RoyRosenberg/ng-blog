@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -17,5 +17,12 @@ export class CustomerService {
 
   getCustomers(): Observable<Customer[]> {
     return this.http.get<Customer[]>(`${this.baseUrl}/Customers`);
+  }
+
+  updateCustomer(customer: Customer): Observable<any> {
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = JSON.stringify(customer);
+    console.log('put customer', customer);
+    return this.http.put(`${this.baseUrl}/Customers`, body, { headers: header });
   }
 }

@@ -12,8 +12,8 @@
         </mat-form-field>
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-        <mat-form-field fxFlex="20" appearance="outline">
+      <div fxLayout="row" fxLayout.lt-md="row wrap" fxLayoutAlign="space-between center">
+        <mat-form-field fxFlex="20" fxFlex.lt-md="48" appearance="outline">
           <mat-label>User</mat-label>
           <mat-select placeholder="User" formControlName="userId">
             <mat-option *ngFor="let user of users" [value]="user.id">
@@ -22,7 +22,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field fxFlex="40" appearance="outline">
+        <mat-form-field fxFlex="38" fxFlex.lt-md="48" appearance="outline">
           <mat-label>Customer</mat-label>
           <mat-select placeholder="customer" formControlName="customerId">
             <mat-option *ngFor="let cust of customers" (onSelectionChange)="customerSelectionChanged($event)"
@@ -32,7 +32,7 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field fxFlex="40" appearance="outline">
+        <mat-form-field fxFlex="38" fxFlex.lt-md="100" appearance="outline">
           <mat-label>Project</mat-label>
           <mat-select placeholder="project" formControlName="projectId">
             <mat-option *ngFor="let proj of projectOfCustomer" [value]="proj.id">
@@ -43,8 +43,8 @@
 
       </div>
 
-      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-        <mat-form-field fxFlex="20" appearance="outline">
+      <div fxLayout="row" fxLayout.lt-md="row wrap" fxLayoutAlign="space-between center">
+        <mat-form-field fxFlex="23" fxFlex.lt-md="48" appearance="outline">
           <mat-label>Date</mat-label>
           <input matInput [matDatepicker]="pickerFrom" formControlName="date">
           <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
@@ -54,7 +54,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field fxFlex="20" appearance="outline">
+        <mat-form-field fxFlex="23" fxFlex.lt-md="48" appearance="outline">
           <mat-label>From</mat-label>
           <input matInput [ngxTimepicker]="pickerFrm" [format]="24" formControlName="from">
           <ngx-material-timepicker-toggle [for]="pickerFrm" matSuffix>
@@ -62,7 +62,7 @@
           <ngx-material-timepicker #pickerFrm></ngx-material-timepicker>
         </mat-form-field>
 
-        <mat-form-field fxFlex="15" appearance="outline">
+        <mat-form-field fxFlex="23" fxFlex.lt-md="48" appearance="outline">
           <mat-label>To</mat-label>
           <input matInput [ngxTimepicker]="pickerTo" [format]="24" formControlName="to">
           <ngx-material-timepicker-toggle [for]="pickerTo" matSuffix>
@@ -70,16 +70,10 @@
           <ngx-material-timepicker #pickerTo></ngx-material-timepicker>
         </mat-form-field>
 
-        <mat-form-field fxFlex="20" appearance="outline">
+        <mat-form-field fxFlex="23" fxFlex.lt-md="48" appearance="outline">
           <mat-label>Additional Hours</mat-label>
           <input matInput placeholder="Additional Hours" formControlName="additionalHours">
-        </mat-form-field>
-
-        <mat-form-field fxFlex="20" appearance="outline">
-          <!-- <mat-label>Offline Hours</mat-label> -->
-          <input matInput hidden>
-          <mat-slide-toggle formControlName="offline">Offline Hours</mat-slide-toggle>
-        </mat-form-field>
+        </mat-form-field>      
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
@@ -87,7 +81,10 @@
       </div>
 
       <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
-        <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <div fxFlex="50" fxLayoutAlign="start center" >
+          <mat-slide-toggle formControlName="offline">Offline Hours</mat-slide-toggle>
+        </div>
+        <div fxFlex="50" fxLayoutAlign="end center" fxLayoutGap="10px">
           <a mat-raised-button routerLink="/posts/list" color="warn">
             <mat-icon>cancel</mat-icon>Cancel
           </a>

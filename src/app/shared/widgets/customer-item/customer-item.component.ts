@@ -1,5 +1,5 @@
 import { Color } from '@angular-material-components/color-picker';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 
@@ -16,10 +16,10 @@ export class CustomerItemComponent implements OnInit {
     this.dataSource.data = list;
   }
   @Input() set customer(c: Customer) {
-    // console.log('customer', c);
     if (c !== null) {
       this.frmCustomer.patchValue({ company: c.company });
       this.frmCustomer.patchValue({ contact: c.contact });
+      this.frmCustomer.patchValue({ phone: c.phone });
       this.frmCustomer.patchValue({ address: c.address });
       this.frmCustomer.patchValue({ id: c.id });
       if (c.color) {
@@ -29,6 +29,7 @@ export class CustomerItemComponent implements OnInit {
       }
     }
   }
+  @Output() customerSave = new EventEmitter<Customer>();
   dataSource = new MatTableDataSource<Project>([]);
   displayedColumns: string[] = ['name', 'date', 'state', 'actions'];
   frmCustomer: FormGroup;
@@ -36,6 +37,7 @@ export class CustomerItemComponent implements OnInit {
     this.frmCustomer = formBuilder.group({
       company: ['', Validators.required],
       contact: ['', Validators.required],
+      phone: ['', Validators.required],
       address: ['', Validators.required],
       color: ['', Validators.required],
       id: [0, Validators.required]
@@ -55,7 +57,12 @@ export class CustomerItemComponent implements OnInit {
   }
 
   onFormSubmit() {
-
+    if (this.frmCustomer.valid) {
+      console.log(this.frmCustomer.value);
+      const cust: Customer = this.frmCustomer.value;
+      cust.color = `#${this.frmCustomer.value.color.hex}`;
+      this.customerSave.emit(cust);
+    }
   }
 
 }

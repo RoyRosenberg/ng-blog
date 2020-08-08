@@ -6,6 +6,10 @@ export enum CustomerActionTypes {
     GetCustomersSuccess = '[Customer] Get Customers Success',
     GetCustomersFailed = '[Customer] Get Customers Failed',
     SelectCustomer = '[Customer] Select',
+
+    UpdateCustomer = '[Customer] Update',
+    UpdateCustomerSuccess = '[Customer] Update Success',
+    UpdateCustomerFailed = '[Customer] Update Failed',
 }
 
 export class LoadCustomers implements Action {
@@ -26,6 +30,21 @@ export class SelectCustomer implements Action {
     constructor(public payload: number) { }
 }
 
+export class UpdateCustomer implements Action {
+    readonly type = CustomerActionTypes.UpdateCustomer;
+    constructor(public payload: Customer) { }
+}
+
+export class UpdateCustomerSuccess implements Action {
+    readonly type = CustomerActionTypes.UpdateCustomerSuccess;
+    constructor(public payload: Customer) { }
+}
+
+export class UpdateCustomerFailed implements Action {
+    readonly type = CustomerActionTypes.UpdateCustomerFailed;
+}
+
 export type CustomersActions = LoadCustomers
     | LoadCustomersSuccess | LoadCustomersFailed
-    | SelectCustomer;
+    | SelectCustomer
+    | UpdateCustomer | UpdateCustomerSuccess | UpdateCustomerFailed;

@@ -28,4 +28,19 @@ export class CustomerEffects {
                 )
         )
     );
+
+    @Effect()
+    updateCustomer$ = this.actions$.pipe(
+        ofType<CustomerActions.UpdateCustomer>(CustomerActions.CustomerActionTypes.UpdateCustomer),
+        mergeMap(action =>
+            this.custService.updateCustomer(action.payload)
+                .pipe(
+                    map(res => new CustomerActions.UpdateCustomerSuccess(action.payload)),
+                    catchError((err) => {
+                        console.log(err);
+                        return of(new CustomerActions.UpdateCustomerFailed());
+                    })
+                )
+        )
+    );
 }
