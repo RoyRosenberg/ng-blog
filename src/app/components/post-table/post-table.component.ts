@@ -1,7 +1,9 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { PagingInfo } from 'src/app/models/postFilter';
 
@@ -11,13 +13,13 @@ import { PagingInfo } from 'src/app/models/postFilter';
   styleUrls: ['./post-table.component.scss'],
   animations: [
     trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
       transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
     ]),
   ],
 })
-export class PostTableComponent implements OnInit {
+export class PostTableComponent implements OnInit, OnDestroy {
   @Input('posts')
   set posts(values: Post[]) {
     this.dataSource.data = values;
@@ -38,10 +40,29 @@ export class PostTableComponent implements OnInit {
   expandedElement: Post;
   displayedColumns: string[] = ['id', 'title', 'date', 'user', 'customer', 'actions'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  mediaSub: Subscription;
+  constructor(private mediaObserver: MediaObserver) { }
 
-  constructor() { }
+  ngOnDestroy(): void {
+    this.mediaSub.unsubscribe();
+  }
 
   ngOnInit() {
+    this.mediaSub = this.mediaObserver.media$
+      .subscribe((change: MediaChange) => {
+        console.log(change.mqAlias);
+        // switch (change.mqAlias) {
+        //   case 'lg':
+        //     this.displayedColumns = ['id', 'title', 'date', 'user', 'customer', 'actions'];
+        //     break;
+        //   case 'md':
+        //     this.displayedColumns = ['title', 'date', 'user', 'customer'];
+        //     break;
+        //   case 'sm':
+        //     this.displayedColumns = ['title', 'date', 'user', 'customer'];
+        //     break;
+        // }
+      });
   }
 
   pagingChange(event: PageEvent) {

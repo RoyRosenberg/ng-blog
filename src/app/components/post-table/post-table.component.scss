@@ -27,7 +27,7 @@ mat-progress-bar {
     height: 24px;
 }
 
-button {
+.mat-mini-fab {
     visibility: hidden;
 }
 
@@ -36,7 +36,7 @@ tr {
 }
 
 tr:hover {
-    button {
+    .mat-mini-fab {
         visibility: visible;
     }
 }

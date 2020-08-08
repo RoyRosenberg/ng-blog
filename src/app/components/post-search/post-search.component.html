@@ -1,6 +1,6 @@
 <div [formGroup]="searchForm">
-  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-    <mat-form-field fxFlex="25">
+  <div fxLayout="row wrap" fxLayoutAlign="space-between center">
+    <mat-form-field fxFlex="23" fxFlex.lt-md="48">
       <mat-label>User</mat-label>
       <mat-select placeholder="User" formControlName="userId">
         <mat-option [value]="0">-- All --</mat-option>
@@ -9,7 +9,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field fxFlex="25">
+    <mat-form-field fxFlex="23" fxFlex.lt-md="48">
       <mat-label>Customer</mat-label>
       <mat-select placeholder="customer" formControlName="customerId">
         <mat-option [value]="0">-- All --</mat-option>
@@ -18,13 +18,13 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field fxFlex="25">
+    <mat-form-field fxFlex="23" fxFlex.lt-md="48">
       <mat-label>From</mat-label>
       <input matInput [matDatepicker]="pickerFrom" formControlName="fromDate">
       <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
       <mat-datepicker #pickerFrom></mat-datepicker>
     </mat-form-field>
-    <mat-form-field fxFlex="25">
+    <mat-form-field fxFlex="23" fxFlex.lt-md="48">
       <mat-label>To</mat-label>
       <input matInput [matDatepicker]="pickerTo" formControlName="toDate">
       <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
