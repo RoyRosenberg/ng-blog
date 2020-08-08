@@ -1,0 +1,26 @@
+<div [formGroup]="actionItemGrp" fxLayout="row wrap" fxLayoutAlign="space-between start">
+  <mat-slide-toggle style="margin-top: 23px;" formControlName="isCompleted" fxFlex="15" fxFlex.lt-md="20" fxLayoutAlign="start center">
+    <span class="material-icons"
+      [matTooltip]="actionItemGrp.controls.isCompleted.value ? 'completed': 'in progress'"
+      [style.color]="actionItemGrp.controls.isCompleted.value ? 'green': 'black'">
+      {{actionItemGrp.controls.isCompleted.value ? 'check_circle' : 'work' }}
+    </span>
+  </mat-slide-toggle>
+  <mat-form-field fxFlex="20" fxFlex.lt-md="78" fxFill appearance="outline">
+    <mat-label>User</mat-label>
+    <mat-select placeholder="User" formControlName="userId">
+      <mat-option *ngFor="let user of userList" [value]="user.id">
+        {{user.userName}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field fxFlex="60" fxFlex.lt-md="100" fxFill appearance="outline">
+    <mat-label>Subject</mat-label>
+    <input matInput placeholder="Subject" formControlName="subject">
+    <mat-error *ngIf="actionItemGrp.controls.subject.hasError('required')">
+      Subject is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+</div>
+<mat-divider style="margin-bottom: 10px;"></mat-divider>

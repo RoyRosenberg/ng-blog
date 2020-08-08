@@ -1,11 +1,10 @@
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
-import { Customer } from '../../models/customer';
-import { Project } from '../../models/project';
-import { Tag } from '../../models/tag';
-import { User } from '../../models/user';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Customer } from 'src/app/models/customer';
+import { Project } from 'src/app/models/project';
+import { Tag } from 'src/app/models/tag';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-post-item',
@@ -23,12 +22,12 @@ export class PostItemComponent implements OnInit {
   postInfo: FormGroup;
   postDetails: FormGroup;
   projectOfCustomer: Project[];
-
+  actionItemList: FormArray;
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.postInfo = this.formBuilder.group({
-      title: ['', Validators.required],
+      title: ['s', Validators.required],
       userId: [this.users[0].id, Validators.required],
       date: [new Date(), Validators.required],
       from: ['09:00', Validators.required],
@@ -41,8 +40,25 @@ export class PostItemComponent implements OnInit {
     });
 
     this.postDetails = this.formBuilder.group({
-      summary: ['', Validators.required]
+      summary: ['s', Validators.required]
     });
+
+    this.actionItemList = this.formBuilder.array([]);
+    this.insertActionItem();
+  }
+
+  insertActionItem() {
+    const newItem = this.formBuilder.group({
+      userId: this.users[0].id,
+      subject: ['', Validators.required],
+      isCompleted: [true],
+      user: [this.users[0]]
+    });
+    this.actionItemList.push(newItem);
+  }
+
+  removeAllActionItems() {
+    this.actionItemList.clear();
   }
 
   customerSelectionChanged(event) {

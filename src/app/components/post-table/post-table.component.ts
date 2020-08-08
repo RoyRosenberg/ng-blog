@@ -1,9 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
-import { MediaChange, MediaObserver } from '@angular/flex-layout';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/Post';
 import { PagingInfo } from 'src/app/models/postFilter';
 
@@ -19,7 +17,7 @@ import { PagingInfo } from 'src/app/models/postFilter';
     ]),
   ],
 })
-export class PostTableComponent implements OnInit, OnDestroy {
+export class PostTableComponent implements OnInit {
   @Input('posts')
   set posts(values: Post[]) {
     this.dataSource.data = values;
@@ -40,18 +38,9 @@ export class PostTableComponent implements OnInit, OnDestroy {
   expandedElement: Post;
   displayedColumns: string[] = ['id', 'title', 'date', 'user', 'customer', 'actions'];
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  mediaSub: Subscription;
-  constructor(private mediaObserver: MediaObserver) { }
-
-  ngOnDestroy(): void {
-    this.mediaSub.unsubscribe();
-  }
+  constructor() { }
 
   ngOnInit() {
-    this.mediaSub = this.mediaObserver.media$
-      .subscribe((change: MediaChange) => {
-        // console.log(change.mqAlias);
-      });
   }
 
   pagingChange(event: PageEvent) {

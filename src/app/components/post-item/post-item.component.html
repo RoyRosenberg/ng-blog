@@ -73,7 +73,7 @@
         <mat-form-field fxFlex="23" fxFlex.lt-md="48" appearance="outline">
           <mat-label>Additional Hours</mat-label>
           <input matInput placeholder="Additional Hours" formControlName="additionalHours">
-        </mat-form-field>      
+        </mat-form-field>
       </div>
 
       <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
@@ -81,7 +81,7 @@
       </div>
 
       <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
-        <div fxFlex="50" fxLayoutAlign="start center" >
+        <div fxFlex="50" fxLayoutAlign="start center">
           <mat-slide-toggle formControlName="offline">Offline Hours</mat-slide-toggle>
         </div>
         <div fxFlex="50" fxLayoutAlign="end center" fxLayoutGap="10px">
@@ -120,9 +120,66 @@
       </div>
     </form>
   </mat-step>
+  <mat-step [stepControl]="actionItemList" errorMessage="Fill in all action items">
+    <form [formGroup]="actionItemList">
+      <ng-template matStepLabel>Action Items</ng-template>
+      <h2>Action Items</h2>
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px" style="margin-bottom: 10px;">
+        <div fxFlex="100" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <button mat-raised-button color="primary" (click)="insertActionItem()">
+            <mat-icon>add_circle_outline</mat-icon>Insert
+          </button>
+          <button mat-raised-button color="primary" (click)="removeAllActionItems()">
+            <mat-icon>remove_circle_outline</mat-icon>Remove All
+          </button>
+        </div>
+      </div>
+      <div *ngFor="let item of actionItemList.controls">
+        <app-action-item-item [item]="item" [userList]="users">
+        </app-action-item-item>
+      </div>
+    </form>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+      <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <button mat-raised-button matStepperPrevious color="primary">
+          <mat-icon>arrow_back_ios</mat-icon>Back
+        </button>
+        <a mat-raised-button routerLink="/posts/list" color="warn">
+          <mat-icon>cancel</mat-icon>Cancel
+        </a>
+        <button mat-raised-button matStepperNext color="primary">Next
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-step>
   <mat-step>
     <ng-template matStepLabel>Done</ng-template>
-    <p>You are now done.</p>
+    <p>You are now done. Click Save button to save the post</p>    
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+      <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">
+        <button mat-raised-button matStepperPrevious color="primary">
+          <mat-icon>arrow_back_ios</mat-icon>Back
+        </button>
+        <a mat-raised-button routerLink="/posts/list" color="warn">
+          <mat-icon>cancel</mat-icon>Cancel
+        </a>
+        <button mat-raised-button matStepperNext color="primary">Save and Finish
+          <mat-icon>send</mat-icon>
+        </button>
+      </div>
+    </div>
+    <h1>{{postInfo.controls.title.value}}</h1>
+    <p>{{postInfo.controls.date.value | date: 'dd/MM/yyyy'}} {{postInfo.controls.from.value}}-{{postInfo.controls.to.value}}</p>
+    <b>Posted by: User @ Company</b>
+    <div [formGroup]="postDetails" [innerHTML]="postDetails.controls.summary.value"></div>
+    <h2>Action Items</h2>
+    <div *ngFor="let item of actionItemList.controls">
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <div>{{item.controls.userid?.value}}</div>
+        <div>{{item.controls.subject?.value}}</div>
+      </div>
+    </div>
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
       <div fxFlex="100" fxLayoutAlign="end center" fxLayoutGap="10px">
         <button mat-raised-button matStepperPrevious color="primary">
