@@ -1,3 +1,4 @@
+import { ActionItem } from './action-item';
 import { Project } from './project';
 import { User } from './user';
 
@@ -14,4 +15,5 @@ export class Post {
     additionalHours: number;
     user: User;
     project: Project;
+    actionItems: ActionItem[];
 }

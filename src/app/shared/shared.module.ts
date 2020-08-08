@@ -33,6 +33,7 @@ import { RouterModule } from '@angular/router';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
+import { ActionItemListComponent } from '../components/action-item-list/action-item-list.component';
 import { AreaComponent } from '../components/area/area.component';
 import { CardComponent } from '../components/card/card.component';
 import { CustomerItemComponent } from '../components/customer-item/customer-item.component';
@@ -75,7 +76,8 @@ export const BLOG_DATE_FORMATS = {
     TagTableComponent,
     CustomerTableComponent,
     TagItemComponent,
-    CustomerItemComponent
+    CustomerItemComponent,
+    ActionItemListComponent
   ],
   imports: [
     CommonModule,
@@ -127,7 +129,8 @@ export const BLOG_DATE_FORMATS = {
     TagTableComponent,
     CustomerTableComponent,
     TagItemComponent,
-    CustomerItemComponent
+    CustomerItemComponent,
+    ActionItemListComponent
   ]
 })
 export class SharedModule { }

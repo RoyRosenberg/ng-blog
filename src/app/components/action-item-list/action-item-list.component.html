@@ -1,0 +1,18 @@
+<div *ngIf="items && items.length > 0" fxLayout="column" style="margin-bottom: 10px;">
+  <h3>Action Items</h3>
+  <div *ngFor="let item of items" fxLayout="row wrap" fxLayoutGap="5px" fxLayoutAlign="start center">
+    <div fxLayoutAlign="start center">
+      <mat-slide-toggle [checked]="item.isCompleted" (change)="toggle(item)">
+        <span class="material-icons" [matTooltip]="item.isCompleted ? 'completed': 'in progress'" [style.color]="item.isCompleted ? 'green': 'black'">
+          {{item.isCompleted ? 'check_circle' : 'work' }}
+        </span>
+      </mat-slide-toggle>
+    </div>
+    <div fxLayoutAlign="start cesnter" fxLayoutGap="10px">
+      {{item.user.userName}}
+    </div>
+    <div fxLayoutAlign="start center" fxLayoutGap="10px">
+      {{item.subject}}
+    </div>
+  </div>
+</div>

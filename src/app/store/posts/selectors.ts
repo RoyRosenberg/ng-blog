@@ -54,6 +54,18 @@ export const getPosts = createSelector(
                 };
             }
 
+            // update action item user
+            post.actionItems = post.actionItems.map(item => {
+                const actionItem = {...item};
+                const actionItemUser = users.find(u => u.id === actionItem.userId);
+                if (actionItemUser) {
+                    actionItem.user = actionItemUser;
+                } else {
+                    actionItem.user = { id: 0, userName: 'loading...', color: '', email: '' };
+                }
+                return actionItem;
+            });
+
             return post;
         });
     }

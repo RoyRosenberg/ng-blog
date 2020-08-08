@@ -50,18 +50,7 @@ export class PostTableComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.mediaSub = this.mediaObserver.media$
       .subscribe((change: MediaChange) => {
-        console.log(change.mqAlias);
-        // switch (change.mqAlias) {
-        //   case 'lg':
-        //     this.displayedColumns = ['id', 'title', 'date', 'user', 'customer', 'actions'];
-        //     break;
-        //   case 'md':
-        //     this.displayedColumns = ['title', 'date', 'user', 'customer'];
-        //     break;
-        //   case 'sm':
-        //     this.displayedColumns = ['title', 'date', 'user', 'customer'];
-        //     break;
-        // }
+        // console.log(change.mqAlias);
       });
   }
 

@@ -66,6 +66,9 @@
             </button>
           </div>
           <div [innerHTML]="expandedElement?.summary"></div>
+          <div>
+            <app-action-item-list [items]="expandedElement?.actionItems"></app-action-item-list>
+          </div>
         </div>
       </td>
     </ng-container>    
