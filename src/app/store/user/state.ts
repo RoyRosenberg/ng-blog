@@ -1,4 +1,4 @@
-import { User } from 'src/app/shared/models/user';
+import { User } from 'src/app/models/user';
 
 export interface UserState {
     fetching: boolean;

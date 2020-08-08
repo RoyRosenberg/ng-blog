@@ -1,6 +1,6 @@
 import { Action } from '@ngrx/store';
-import { Post } from 'src/app/shared/models/Post';
-import { PagingResponse, PostFilter } from 'src/app/shared/models/postFilter';
+import { Post } from 'src/app/models/Post';
+import { PagingResponse, PostFilter } from 'src/app/models/postFilter';
 
 import { initState } from './reducer';
 

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DefaultModule } from './layouts/default/default.module';
+import { DefaultModule } from './pages/default/default.module';
 
 @NgModule({
   declarations: [

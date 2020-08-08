@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DefaultComponent } from './layouts/default/default.component';
-import { CustomerEditComponent } from './modules/customer-edit/customer-edit.component';
-import { CustomerListComponent } from './modules/customer-list/customer-list.component';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
-import { PostEditComponent } from './modules/post-edit/post-edit.component';
-import { PostListComponent } from './modules/post-list/post-list.component';
-import { TagEditComponent } from './modules/tag-edit/tag-edit.component';
-import { TagListComponent } from './modules/tag-list/tag-list.component';
+import { CustomerEditComponent } from './pages/customer-edit/customer-edit.component';
+import { CustomerListComponent } from './pages/customer-list/customer-list.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { DefaultComponent } from './pages/default/default.component';
+import { PostEditComponent } from './pages/post-edit/post-edit.component';
+import { PostListComponent } from './pages/post-list/post-list.component';
+import { TagEditComponent } from './pages/tag-edit/tag-edit.component';
+import { TagListComponent } from './pages/tag-list/tag-list.component';
 
 
 const routes: Routes = [

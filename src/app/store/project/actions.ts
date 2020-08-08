@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Project } from 'src/app/shared/models/project';
+import { Project } from 'src/app/models/project';
 
 
 export enum ProjectActionTypes {

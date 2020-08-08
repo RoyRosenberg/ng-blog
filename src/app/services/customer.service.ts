@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Customer } from '../shared/models/Customer';
+import { Customer } from '../models/Customer';
 
 
 

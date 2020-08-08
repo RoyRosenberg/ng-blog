@@ -1,4 +1,4 @@
-import { Tag } from 'src/app/shared/models/tag';
+import { Tag } from 'src/app/models/tag';
 
 export interface TagState {
     fetching: boolean;

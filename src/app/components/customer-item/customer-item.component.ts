@@ -2,9 +2,8 @@ import { Color } from '@angular-material-components/color-picker';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
-
-import { Customer } from '../../models/customer';
-import { Project } from '../../models/project';
+import { Customer } from 'src/app/models/customer';
+import { Project } from 'src/app/models/project';
 
 @Component({
   selector: 'app-customer-item',

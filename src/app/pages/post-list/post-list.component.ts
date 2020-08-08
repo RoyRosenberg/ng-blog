@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Customer } from 'src/app/shared/models/customer';
-import { Post } from 'src/app/shared/models/Post';
-import { PagingInfo, PostFilter, PostSearchFilter } from 'src/app/shared/models/postFilter';
-import { User } from 'src/app/shared/models/user';
+import { Customer } from 'src/app/models/customer';
+import { Post } from 'src/app/models/Post';
+import { PagingInfo, PostFilter, PostSearchFilter } from 'src/app/models/postFilter';
+import { User } from 'src/app/models/user';
 import { AppState } from 'src/app/store/appState';
 import { CustomerSelectors } from 'src/app/store/customer';
 import { UserSelectors } from 'src/app/store/user';

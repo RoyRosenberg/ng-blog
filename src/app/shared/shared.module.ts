@@ -33,20 +33,20 @@ import { RouterModule } from '@angular/router';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
-import { FooterComponent } from './components/footer/footer.component';
-import { HeaderComponent } from './components/header/header.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { AreaComponent } from './widgets/area/area.component';
-import { CardComponent } from './widgets/card/card.component';
-import { CustomerItemComponent } from './widgets/customer-item/customer-item.component';
-import { CustomerTableComponent } from './widgets/customer-table/customer-table.component';
-import { PieComponent } from './widgets/pie/pie.component';
-import { PostItemComponent } from './widgets/post-item/post-item.component';
-import { PostSearchComponent } from './widgets/post-search/post-search.component';
-import { PostTableComponent } from './widgets/post-table/post-table.component';
-import { TagItemComponent } from './widgets/tag-item/tag-item.component';
-import { TagSelectionComponent } from './widgets/tag-selection/tag-selection.component';
-import { TagTableComponent } from './widgets/tag-table/tag-table.component';
+import { AreaComponent } from '../components/area/area.component';
+import { CardComponent } from '../components/card/card.component';
+import { CustomerItemComponent } from '../components/customer-item/customer-item.component';
+import { CustomerTableComponent } from '../components/customer-table/customer-table.component';
+import { FooterComponent } from '../components/footer/footer.component';
+import { HeaderComponent } from '../components/header/header.component';
+import { PieComponent } from '../components/pie/pie.component';
+import { PostItemComponent } from '../components/post-item/post-item.component';
+import { PostSearchComponent } from '../components/post-search/post-search.component';
+import { PostTableComponent } from '../components/post-table/post-table.component';
+import { SidebarComponent } from '../components/sidebar/sidebar.component';
+import { TagItemComponent } from '../components/tag-item/tag-item.component';
+import { TagSelectionComponent } from '../components/tag-selection/tag-selection.component';
+import { TagTableComponent } from '../components/tag-table/tag-table.component';
 
 export const BLOG_DATE_FORMATS = {
   parse: {

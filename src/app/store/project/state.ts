@@ -1,4 +1,4 @@
-import { Project } from 'src/app/shared/models/project';
+import { Project } from 'src/app/models/project';
 
 export interface ProjectState {
     fetching: boolean;

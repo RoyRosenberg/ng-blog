@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { Tag } from '../shared/models/Tag';
+import { Tag } from '../models/Tag';
 
 
 @Injectable({

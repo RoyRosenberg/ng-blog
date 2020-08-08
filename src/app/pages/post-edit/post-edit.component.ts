@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Customer } from 'src/app/shared/models/customer';
-import { Project } from 'src/app/shared/models/project';
-import { Tag } from 'src/app/shared/models/tag';
-import { User } from 'src/app/shared/models/user';
+import { Customer } from 'src/app/models/customer';
+import { Project } from 'src/app/models/project';
+import { Tag } from 'src/app/models/tag';
+import { User } from 'src/app/models/user';
 import { AppState } from 'src/app/store/appState';
 import { CustomerSelectors } from 'src/app/store/customer';
 import { ProjectSelectors } from 'src/app/store/project';

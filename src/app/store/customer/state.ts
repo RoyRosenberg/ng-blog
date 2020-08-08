@@ -1,4 +1,4 @@
-import { Customer } from 'src/app/shared/models/customer';
+import { Customer } from 'src/app/models/customer';
 
 export interface CustomerState {
     fetching: boolean;

@@ -2,8 +2,7 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
-import { Customer } from '../../models/customer';
+import { Customer } from 'src/app/models/customer';
 
 @Component({
   selector: 'app-customer-table',

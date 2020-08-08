@@ -1,5 +1,5 @@
-import { Post } from 'src/app/shared/models/Post';
-import { PostFilter } from 'src/app/shared/models/postFilter';
+import { Post } from 'src/app/models/Post';
+import { PostFilter } from 'src/app/models/postFilter';
 
 
 export interface PostState {
