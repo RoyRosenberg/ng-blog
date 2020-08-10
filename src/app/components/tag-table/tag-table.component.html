@@ -1,12 +1,14 @@
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-  <mat-form-field fxFlex="100">
+  <mat-form-field fxFlex="grow">
     <mat-label>Search Tags</mat-label>
-    <input matInput placeholder="search Tags" [formControl]="searchTag">
+    <input matInput placeholder="Search Tags" [formControl]="searchTag">
   </mat-form-field>
-  <a mat-raised-button routerLink="/tags/add"  fxLayoutAlign="end center" color="accent">
-    New Tag
-    <mat-icon>label</mat-icon>
-  </a>
+  <div>
+    <a mat-raised-button routerLink="/tags/add" fxLayoutAlign="end center" color="accent">
+      New Tag
+      <mat-icon>label</mat-icon>
+    </a>
+  </div>
 </div>
 <br />
 
@@ -25,10 +27,12 @@
     <ng-container matColumnDef="color">
       <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> Actions </th>
       <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element">
-        <button mat-mini-fab color="warn" matTooltip="delete post" (click)="deleteTag(element.id)" aria-label="delete tag">
+        <button mat-mini-fab color="warn" matTooltip="delete post" (click)="deleteTag(element.id)"
+          aria-label="delete tag">
           <mat-icon>delete</mat-icon>
         </button>
-        <a mat-mini-fab [routerLink]="['/tags/edit/', element.id]" color="primary" matTooltip="edit post" aria-label="edit tag">
+        <a mat-mini-fab [routerLink]="['/tags/edit/', element.id]" color="primary" matTooltip="edit post"
+          aria-label="edit tag">
           <mat-icon>edit</mat-icon>
         </a>
       </td>

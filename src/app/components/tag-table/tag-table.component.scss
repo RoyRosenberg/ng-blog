@@ -4,7 +4,12 @@
 }
 
 tr:hover {
-    button, a {
+    button,
+    a {
         visibility: visible;
     }
+}
+
+.mat-button-wrapper {
+    padding-left: 16px !important;
 }

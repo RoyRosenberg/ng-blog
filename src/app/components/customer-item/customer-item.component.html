@@ -7,7 +7,7 @@
         <h1>{{frmCustomer.get('company').value}}</h1>
         <form [formGroup]="frmCustomer" (ngSubmit)="onFormSubmit()">
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                <mat-form-field fxFlex="50" appearance="outline">
+                <mat-form-field fxFlex="50" fxFlex.lt-lg="100" appearance="outline">
                     <mat-label>Company</mat-label>
                     <input matInput placeholder="Company" formControlName="company">
                     <mat-error *ngIf="frmCustomer.get('company').hasError('required')">
@@ -16,7 +16,7 @@
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                <mat-form-field fxFlex="50" appearance="outline">
+                <mat-form-field fxFlex="50" fxFlex.lt-lg="100" appearance="outline">
                     <mat-label>Phone</mat-label>
                     <input matInput placeholder="Phone" formControlName="phone">
                     <mat-error *ngIf="frmCustomer.get('phone').hasError('required')">
@@ -25,7 +25,7 @@
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                <mat-form-field fxFlex="50" appearance="outline">
+                <mat-form-field fxFlex="50" fxFlex.lt-lg="100" appearance="outline">
                     <mat-label>Contact</mat-label>
                     <input matInput placeholder="Contact" formControlName="contact">
                     <mat-error *ngIf="frmCustomer.get('contact').hasError('required')">
@@ -34,7 +34,7 @@
                 </mat-form-field>
             </div>
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                <mat-form-field fxFlex="50" appearance="outline">
+                <mat-form-field fxFlex="50" fxFlex.lt-lg="100" appearance="outline">
                     <mat-label>Address</mat-label>
                     <input matInput placeholder="Address" formControlName="address">
                     <mat-error *ngIf="frmCustomer.get('address').hasError('required')">
@@ -44,7 +44,7 @@
             </div>
 
             <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-                <mat-form-field fxFlex="20" appearance="outline">
+                <mat-form-field fxFlex="20" fxFlex.lt-lg="50" appearance="outline">
                     <mat-label>Color</mat-label>
                     <input matInput [ngxMatColorPicker]="picker" placeholder="Color" formControlName="color">
                     <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
@@ -53,7 +53,7 @@
                         Color is <strong>required</strong>
                     </mat-error>
                 </mat-form-field>
-                <div fxFlex="30" fxLayoutGap="20px" fxLayoutAlign="start center">
+                <div fxFlex="30" fxFlex.lt-lg="50" fxLayoutGap="20px" fxLayoutAlign="start center">
                     <button type="submit" mat-raised-button color="primary">Save
                         <mat-icon>send</mat-icon>
                     </button>

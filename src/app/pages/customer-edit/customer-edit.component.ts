@@ -18,7 +18,7 @@ export class CustomerEditComponent implements OnInit {
   customer$: Observable<Customer>;
   projects$: Observable<Project[]>;
 
-  constructor(private store: Store<AppState>, private route: ActivatedRoute, private router: Router, ) {
+  constructor(private store: Store<AppState>, private route: ActivatedRoute, private router: Router) {
     this.customer$ = store.select(CustomerSelectors.getSelectedCustomer).pipe(
       tap(cust => {
         if (cust === undefined) {

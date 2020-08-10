@@ -2,7 +2,7 @@
     <div class="profile-card">
         <div class="header">
             <h2>Roy Rosenberg</h2>
-            <h4>roy.rosenberg@live.com</h4>
+            <!-- <h4>roy.rosenberg@live.com</h4> -->
         </div>
         <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Roy Rosenberg">
     </div>
@@ -11,23 +11,31 @@
     <h2 matSubheader>Pages</h2>
 
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
-        <mat-icon>schedule</mat-icon>Dashboard</a>
-    <a mat-list-item routerLink="/posts/list">
-        <mat-icon>article</mat-icon>Posts</a>
-    <a mat-list-item routerLink="/tags/list">
-        <mat-icon>label</mat-icon>Tags</a>
-    <a mat-list-item routerLink="/customers/list">
-        <mat-icon>assignment_ind</mat-icon>Customers</a>
+        <mat-icon>schedule</mat-icon>Dashboard
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/posts/list">
+        <mat-icon>article</mat-icon>Posts
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <mat-icon>import_contacts</mat-icon>
+        Action Items
+    </a>
 
     <mat-divider></mat-divider>
 
-    <h2 matSubheader>Tools</h2>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
-        <mat-icon>import_contacts</mat-icon>
-        Contacts
+    <h2 matSubheader>Administration</h2>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/customers/list">
+        <mat-icon>assignment_ind</mat-icon>Customers
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/tags/list">
+        <mat-icon>label</mat-icon>Tags
     </a>
     <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
-        <mat-icon>contact_phone</mat-icon>
-        Leads
+        <mat-icon>account_circle</mat-icon>
+        Users
+    </a>
+    <a mat-list-item routerLinkActive="list-item-active" routerLink="/">
+        <mat-icon>flag</mat-icon>
+        Reports
     </a>
 </mat-nav-list>

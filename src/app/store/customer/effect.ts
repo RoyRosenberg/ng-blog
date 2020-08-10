@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { AlertService } from 'src/app/services/alert.service';
 import { CustomerService } from 'src/app/services/customer.service';
 
 import { CustomerActions } from '../customer';
@@ -10,7 +12,9 @@ import { CustomerActions } from '../customer';
 export class CustomerEffects {
     constructor(
         private actions$: Actions,
-        private custService: CustomerService
+        private custService: CustomerService,
+        private router: Router,
+        private alertService: AlertService
     ) { }
 
     @Effect()
@@ -36,6 +40,10 @@ export class CustomerEffects {
             this.custService.updateCustomer(action.payload)
                 .pipe(
                     map(res => new CustomerActions.UpdateCustomerSuccess(action.payload)),
+                    tap(res => {
+                        this.router.navigate(['/customers/list']);
+                        this.alertService.success('Customer Updated!✨🎉');
+                    }),
                     catchError((err) => {
                         console.log(err);
                         return of(new CustomerActions.UpdateCustomerFailed());

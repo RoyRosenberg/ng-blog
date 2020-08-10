@@ -1,12 +1,14 @@
 <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-  <mat-form-field fxFlex="80">
+  <mat-form-field fxFlex="grow">
     <mat-label>Search Customer</mat-label>
     <input matInput placeholder="search Customers" [formControl]="searchCustomer">
   </mat-form-field>
-  <a mat-raised-button routerLink="/customers/list"  fxLayoutAlign="end center" color="accent">
-    New Customer
-    <mat-icon>assignment_ind</mat-icon>
-  </a>
+  <div>
+    <a mat-raised-button routerLink="/customers/list" fxLayoutAlign="end center" color="accent">
+      New Customer
+      <mat-icon>assignment_ind</mat-icon>
+    </a>
+  </div>
 </div>
 <br />
 
@@ -21,43 +23,41 @@
       </td>
     </ng-container>
 
-     <!-- Contact Column -->
-     <ng-container matColumnDef="contact">
-      <th mat-header-cell fxFlex="10" fxLayoutAlign="start center" *matHeaderCellDef> Contact </th>
-      <td mat-cell fxFlex="10" fxLayoutAlign="start center" *matCellDef="let element">
+    <!-- Contact Column -->
+    <ng-container matColumnDef="contact">
+      <th mat-header-cell fxFlex="10" fxFlex.xs="20" fxFlex.sm="20" fxLayoutAlign="start center" *matHeaderCellDef> Contact </th>
+      <td mat-cell fxFlex="10" fxFlex.xs="20" fxFlex.sm="20" fxLayoutAlign="start center" *matCellDef="let element">
         {{element.contact}}
       </td>
     </ng-container>
 
     <!-- Phone Column -->
     <ng-container matColumnDef="phone">
-      <th mat-header-cell fxFlex="10" fxLayoutAlign="start center" *matHeaderCellDef> Phone </th>
-      <td mat-cell fxFlex="10" fxLayoutAlign="start center" *matCellDef="let element">
+      <th mat-header-cell fxFlex="10" fxFlex.xs="20" fxFlex.sm="20" fxHide.xs fxLayoutAlign="start center" *matHeaderCellDef> Phone </th>
+      <td mat-cell fxFlex="10" fxFlex.xs="20" fxFlex.sm="20" fxHide.xs fxLayoutAlign="start center" *matCellDef="let element">
         {{element.phone}}
       </td>
     </ng-container>
 
     <!-- Address Column -->
     <ng-container matColumnDef="address">
-      <th mat-header-cell fxFlex="25" fxLayoutAlign="start center" *matHeaderCellDef> Address </th>
-      <td mat-cell fxFlex="25" fxLayoutAlign="start center" *matCellDef="let element">
+      <th mat-header-cell fxFlex="25" fxHide.lt-lg fxLayoutAlign="start center" *matHeaderCellDef> Address </th>
+      <td mat-cell fxFlex="25" fxHide.lt-lg fxLayoutAlign="start center" *matCellDef="let element">
         {{element.address}}
       </td>
     </ng-container>
 
     <!-- Actions Column -->
     <ng-container matColumnDef="actions">
-      <th mat-header-cell fxFlex="15" fxLayoutAlign="start center" *matHeaderCellDef> Actions </th>
-      <td mat-cell fxFlex="15" fxLayoutAlign="start center" *matCellDef="let element">
+      <th mat-header-cell fxFlex="15" fxFlex.xs="20" fxLayoutAlign="start center" *matHeaderCellDef> Actions </th>
+      <td mat-cell fxFlex="15" fxFlex.xs="20" fxLayoutAlign="start center" *matCellDef="let element">
         <button mat-mini-fab color="warn" matTooltip="delete customer" aria-label="delete tag">
           <mat-icon>delete</mat-icon>
         </button>
-        <a mat-mini-fab [routerLink]="['/customers/edit/', element.id]" color="primary" matTooltip="edit customer" aria-label="edit tag">
+        <a mat-mini-fab [routerLink]="['/customers/edit/', element.id]" color="primary" matTooltip="edit customer"
+          aria-label="edit tag">
           <mat-icon>edit</mat-icon>
-        </a>
-        <button mat-mini-fab color="accent" matTooltip="projects" aria-label="projects">
-          <mat-icon>contact_mail</mat-icon>
-        </button>
+        </a>        
       </td>
     </ng-container>
 

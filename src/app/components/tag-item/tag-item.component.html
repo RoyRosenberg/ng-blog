@@ -3,7 +3,7 @@
 
 <form [formGroup]="frmTag" (ngSubmit)="onFormSubmit()">
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-    <mat-form-field fxFlex="20" appearance="outline">
+    <mat-form-field fxFlex="30" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" appearance="outline">
       <mat-label>Name</mat-label>
       <input matInput placeholder="Name" formControlName="name">
       <mat-error *ngIf="frmTag.get('name').hasError('required')">
@@ -13,7 +13,7 @@
   </div>
 
   <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
-    <mat-form-field fxFlex="20" appearance="outline">
+    <mat-form-field fxFlex="30" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" appearance="outline">
       <mat-label>Color</mat-label>
       <input matInput [ngxMatColorPicker]="picker" placeholder="Color" formControlName="color">
       <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
