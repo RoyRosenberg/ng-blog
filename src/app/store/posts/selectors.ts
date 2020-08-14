@@ -39,7 +39,7 @@ export const getPosts = createSelector(
             if (filteredUsers) {
                 post.user = filteredUsers;
             } else {
-                post.user = { id: 0, userName: 'loading...', color: '', email: '' };
+                post.user = { id: 0, userName: 'loading...', color: '', email: '', disabled: true };
             }
 
             // update project
@@ -61,7 +61,7 @@ export const getPosts = createSelector(
                 if (actionItemUser) {
                     actionItem.user = actionItemUser;
                 } else {
-                    actionItem.user = { id: 0, userName: 'loading...', color: '', email: '' };
+                    actionItem.user = { id: 0, userName: 'loading...', color: '', email: '', disabled: true };
                 }
                 return actionItem;
             });

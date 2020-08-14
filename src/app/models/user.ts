@@ -3,4 +3,5 @@ export class User {
     userName: string;
     color: string;
     email: string;
+    disabled: boolean;
 }

@@ -1,0 +1,66 @@
+<div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+  <mat-form-field fxFlex="grow">
+    <mat-label>Search Users</mat-label>
+    <input matInput placeholder="Search Users" [formControl]="searchUser">
+  </mat-form-field>
+  <div>
+    <a mat-raised-button routerLink="/users/add" fxLayoutAlign="end center" color="accent">
+      New User
+      <mat-icon>account_circle</mat-icon>
+    </a>
+  </div>
+</div>
+
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
+  <table mat-table [dataSource]="dataSource" fxFlex="100">
+    <!-- Name Column -->
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> User Name </th>
+      <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element">
+        <mat-icon style="margin-right: 5px;" [style.color]="element.color">account_circle</mat-icon>
+        {{element.userName}}
+      </td>
+    </ng-container>
+
+    <!-- Color Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> Email </th>
+      <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element">       
+        {{element.email}}
+      </td>
+    </ng-container>
+
+    <!-- Disabled Column -->
+    <ng-container matColumnDef="disabled">
+      <th mat-header-cell fxFlex="50" fxHide.xs fxLayoutAlign="start center" *matHeaderCellDef> Disabled </th>
+      <td mat-cell fxFlex="50" fxHide.xs fxLayoutAlign="start center" *matCellDef="let element">       
+        <mat-slide-toggle [checked]="element.disabled" disabled="true"></mat-slide-toggle>      
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="Actions">
+      <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> Actions </th>
+      <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element">
+        <button mat-mini-fab color="warn" matTooltip="delete user" (click)="deleteUser(element.id)"
+          aria-label="delete user">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <a mat-mini-fab [routerLink]="['/user/edit/', element.id]" color="primary" matTooltip="edit user"
+          aria-label="edit user">
+          <mat-icon>edit</mat-icon>
+        </a>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="example-element-row"></tr>
+
+  </table>
+</div>
+
+<div fxLayout="row" style="background-color: white;" fxLayoutAlign="end center" fxLayoutGap="20px">
+  <div fxFlex="100" fxLayoutAlign="end center">
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>

@@ -23,6 +23,7 @@ import { ProjectModule } from 'src/app/store/project/module';
 import { TagModule } from 'src/app/store/tag/module';
 import { UserModule } from 'src/app/store/user/module';
 
+import { UserListComponent } from '../user-list/user-list.component';
 import { DefaultComponent } from './default.component';
 
 @NgModule({
@@ -34,7 +35,8 @@ import { DefaultComponent } from './default.component';
     TagListComponent,
     CustomerListComponent,
     TagEditComponent,
-    CustomerEditComponent
+    CustomerEditComponent,
+    UserListComponent
   ],
   imports: [
     CommonModule,
