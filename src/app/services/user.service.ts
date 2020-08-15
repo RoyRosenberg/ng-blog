@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -16,5 +16,21 @@ export class UserService {
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(`${this.baseUrl}/Users`);
+  }
+
+  getUser(id: number): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/Users/${id}`);
+  }
+
+  createUser(user: User): Observable<User> {
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = JSON.stringify(user);
+    return this.http.post<User>(`${this.baseUrl}/Users`, body, { headers: header });
+  }
+
+  updateUser(user: User): Observable<User> {
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = JSON.stringify(user);
+    return this.http.put<User>(`${this.baseUrl}/Users`, body, { headers: header });
   }
 }

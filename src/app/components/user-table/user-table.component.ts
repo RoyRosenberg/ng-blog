@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
@@ -19,9 +19,9 @@ export class UserTableComponent implements OnInit {
   users: User[];
   dataSource = new MatTableDataSource<User>([]);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  displayedColumns: string[] = ['userName', 'email', 'disabled'];
+  displayedColumns: string[] = ['userName', 'userNameWithEmail', 'email', 'disabled', 'Actions'];
   searchUser = new FormControl();
-
+  @Output() deleteUser = new EventEmitter<number>();
   constructor() { }
 
   ngOnInit() {
@@ -36,8 +36,9 @@ export class UserTableComponent implements OnInit {
     });
   }
 
-  deleteUser(userId: number) {
+  deleteUserClick(userId: number) {
     console.log('delete user', userId);
+    this.deleteUser.emit(userId);
   }
 
 }

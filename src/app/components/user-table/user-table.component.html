@@ -15,38 +15,49 @@
   <table mat-table [dataSource]="dataSource" fxFlex="100">
     <!-- Name Column -->
     <ng-container matColumnDef="userName">
-      <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> User Name </th>
-      <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element">
+      <th mat-header-cell fxFlex="30" fxHide.xs fxLayoutAlign="start center" *matHeaderCellDef> User Name </th>
+      <td mat-cell fxFlex="30" fxHide.xs fxLayoutAlign="start center" *matCellDef="let element">
         <mat-icon style="margin-right: 5px;" [style.color]="element.color">account_circle</mat-icon>
         {{element.userName}}
       </td>
     </ng-container>
 
-    <!-- Color Column -->
+    <!-- Name with Email Column -->
+    <ng-container matColumnDef="userNameWithEmail">
+      <th mat-header-cell fxFlex="80" fxHide fxShow.xs fxLayoutAlign="start center" *matHeaderCellDef> User Name </th>
+      <td mat-cell fxFlex="80" fxHide fxShow.xs fxLayoutAlign="start center" *matCellDef="let element">
+        <mat-icon style="margin-right: 5px;" [style.color]="element.color">account_circle</mat-icon>
+        {{element.userName}}
+        <br />
+        {{element.email}}
+      </td>
+    </ng-container>
+
+    <!-- Email Column -->
     <ng-container matColumnDef="email">
-      <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> Email </th>
-      <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element">       
+      <th mat-header-cell fxFlex="40" fxHide.xs fxLayoutAlign="start center" *matHeaderCellDef> Email </th>
+      <td mat-cell fxFlex="40" fxHide.xs fxLayoutAlign="start center" *matCellDef="let element">
         {{element.email}}
       </td>
     </ng-container>
 
     <!-- Disabled Column -->
     <ng-container matColumnDef="disabled">
-      <th mat-header-cell fxFlex="50" fxHide.xs fxLayoutAlign="start center" *matHeaderCellDef> Disabled </th>
-      <td mat-cell fxFlex="50" fxHide.xs fxLayoutAlign="start center" *matCellDef="let element">       
-        <mat-slide-toggle [checked]="element.disabled" disabled="true"></mat-slide-toggle>      
+      <th mat-header-cell fxFlex="10" fxHide.xs fxLayoutAlign="start center" *matHeaderCellDef> Disabled </th>
+      <td mat-cell fxFlex="10" fxHide.xs fxLayoutAlign="start center" *matCellDef="let element">
+        <mat-slide-toggle [checked]="element.disabled" disabled="true"></mat-slide-toggle>
       </td>
     </ng-container>
 
     <!-- Actions Column -->
     <ng-container matColumnDef="Actions">
-      <th mat-header-cell fxFlex="50" fxLayoutAlign="start center" *matHeaderCellDef> Actions </th>
-      <td mat-cell fxFlex="50" fxLayoutAlign="start center" *matCellDef="let element">
-        <button mat-mini-fab color="warn" matTooltip="delete user" (click)="deleteUser(element.id)"
+      <th mat-header-cell fxFlex="20" fxLayoutAlign="start center" *matHeaderCellDef> Actions </th>
+      <td mat-cell fxFlex="20" fxLayoutAlign="start center" *matCellDef="let element">
+        <button mat-mini-fab [ngClass.lt-md]="'alwayVisible'" color="warn" matTooltip="delete user" (click)="deleteUserClick(element.id)"
           aria-label="delete user">
           <mat-icon>delete</mat-icon>
         </button>
-        <a mat-mini-fab [routerLink]="['/user/edit/', element.id]" color="primary" matTooltip="edit user"
+        <a mat-mini-fab [ngClass.lt-md]="'alwayVisible'" [routerLink]="['/users/edit/', element.id]" color="primary" matTooltip="edit user"
           aria-label="edit user">
           <mat-icon>edit</mat-icon>
         </a>

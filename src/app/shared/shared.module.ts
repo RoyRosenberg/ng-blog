@@ -49,6 +49,7 @@ import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { TagItemComponent } from '../components/tag-item/tag-item.component';
 import { TagSelectionComponent } from '../components/tag-selection/tag-selection.component';
 import { TagTableComponent } from '../components/tag-table/tag-table.component';
+import { UserItemComponent } from '../components/user-item/user-item.component';
 import { UserTableComponent } from '../components/user-table/user-table.component';
 
 export const BLOG_DATE_FORMATS = {
@@ -81,7 +82,8 @@ export const BLOG_DATE_FORMATS = {
     CustomerItemComponent,
     ActionItemListComponent,
     ActionItemItemComponent,
-    UserTableComponent
+    UserTableComponent,
+    UserItemComponent
   ],
   imports: [
     CommonModule,
@@ -136,7 +138,8 @@ export const BLOG_DATE_FORMATS = {
     CustomerItemComponent,
     ActionItemListComponent,
     ActionItemItemComponent,
-    UserTableComponent
+    UserTableComponent,
+    UserItemComponent
   ]
 })
 export class SharedModule { }

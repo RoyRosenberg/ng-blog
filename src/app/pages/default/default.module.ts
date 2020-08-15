@@ -23,6 +23,7 @@ import { ProjectModule } from 'src/app/store/project/module';
 import { TagModule } from 'src/app/store/tag/module';
 import { UserModule } from 'src/app/store/user/module';
 
+import { UserEditComponent } from '../user-edit/user-edit.component';
 import { UserListComponent } from '../user-list/user-list.component';
 import { DefaultComponent } from './default.component';
 
@@ -36,7 +37,8 @@ import { DefaultComponent } from './default.component';
     CustomerListComponent,
     TagEditComponent,
     CustomerEditComponent,
-    UserListComponent
+    UserListComponent,
+    UserEditComponent
   ],
   imports: [
     CommonModule,

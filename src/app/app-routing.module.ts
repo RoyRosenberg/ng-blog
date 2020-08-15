@@ -9,6 +9,7 @@ import { PostEditComponent } from './pages/post-edit/post-edit.component';
 import { PostListComponent } from './pages/post-list/post-list.component';
 import { TagEditComponent } from './pages/tag-edit/tag-edit.component';
 import { TagListComponent } from './pages/tag-list/tag-list.component';
+import { UserEditComponent } from './pages/user-edit/user-edit.component';
 import { UserListComponent } from './pages/user-list/user-list.component';
 
 
@@ -43,7 +44,8 @@ const routes: Routes = [
         path: 'users',
         children: [
           { path: 'list', component: UserListComponent },
-          // { path: 'edit/:id', component: CustomerEditComponent },
+          { path: 'add', component: UserEditComponent },
+          { path: 'edit/:id', component: UserEditComponent },
         ]
       },
     ]

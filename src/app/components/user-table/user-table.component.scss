@@ -1,0 +1,15 @@
+.mat-mini-fab {
+    visibility: hidden;
+    margin-right: 5px;
+}
+
+.alwayVisible{
+    visibility: visible;
+}
+
+tr:hover {
+    button,
+    a {
+        visibility: visible;
+    }
+}

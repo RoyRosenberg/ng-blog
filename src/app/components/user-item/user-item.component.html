@@ -1,0 +1,50 @@
+<h1 *ngIf="frmUser.controls.id.value === 0">New User</h1>
+<h1 *ngIf="frmUser.controls.id.value !== 0">Edit User</h1>
+
+<form [formGroup]="frmUser" (ngSubmit)="onFormSubmit()">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <mat-form-field fxFlex="30" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="User Name" formControlName="userName">
+      <mat-error *ngIf="frmUser.get('userName').hasError('required')">
+        Name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>    
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <mat-form-field fxFlex="30" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" appearance="outline">
+      <mat-label>Email Address</mat-label>
+      <input matInput placeholder="Email Address" formControlName="email">
+      <mat-error *ngIf="frmUser.get('email').hasError('required')">
+        Email Address is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>    
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <mat-form-field fxFlex="30" fxFlex.md="50" fxFlex.sm="50" fxFlex.xs="100" appearance="outline">
+      <mat-label>Color</mat-label>
+      <input matInput [ngxMatColorPicker]="picker" placeholder="Color" formControlName="color">
+      <ngx-mat-color-toggle matSuffix [for]="picker"></ngx-mat-color-toggle>
+      <ngx-mat-color-picker #picker></ngx-mat-color-picker>
+      <mat-error *ngIf="frmUser.get('color').hasError('required')">
+        Color is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <mat-slide-toggle formControlName="disabled">User is disabled   
+    </mat-slide-toggle>   
+  </div>
+
+  <div fxLayout="row" style="margin-top: 10px;" fxLayoutAlign="start center" fxLayoutGap="20px">
+    <button type="submit" mat-raised-button color="primary">Save
+      <mat-icon>send</mat-icon>
+    </button>
+    <a mat-raised-button routerLink="/users/list" color="warn">
+      <mat-icon>cancel</mat-icon>Cancel
+    </a>
+  </div>
+</form>

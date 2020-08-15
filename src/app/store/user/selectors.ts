@@ -12,3 +12,8 @@ export const getFetchingInProgress = createSelector(
     getUsersFeatureState,
     state => state.fetching
 );
+
+export const getSelectedUser = createSelector(
+    getUsersFeatureState,
+    state => state.selectedUser
+);
