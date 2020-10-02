@@ -1,7 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
 import { PostActions } from '.';
-import * as PostsActions from './actions';
 import { PostState } from './state';
 
 const from = new Date();
@@ -27,7 +26,7 @@ export const initState: PostState = {
 
 const postsReducer = createReducer(
     initState,
-    on(PostsActions.LoadPosts, (state, payload) => ({
+    on(PostActions.LoadPosts, (state, payload) => ({
         ...state,
         fetching: true,
         filter: payload.filter ? payload.filter : initState.filter
@@ -71,55 +70,6 @@ const postsReducer = createReducer(
         fetching: false,
     }))
 );
-
-// export function postsReducer(state: PostState = initState, action: PostsActions): PostState {
-//     switch (action.type) {
-//         case PostActionTypes.GetPosts:
-//             return {
-//                 ...state,
-//                 fetching: true,
-//                 filter: action.payload
-//             };
-//         case PostActionTypes.GetPostsSuccess:
-//             return {
-//                 ...state,
-//                 posts: action.payload.items,
-//                 currentPage: action.payload.currentPage,
-//                 postsPerPage: action.payload.itemsPerPage,
-//                 totalPages: action.payload.totalPages,
-//                 totalPostCount: action.payload.totalItemCount,
-//                 fetching: false
-//             };
-//         case PostActionTypes.GetPostsFailed:
-//             return {
-//                 ...state,
-//                 fetching: false
-//             };
-//         case PostActionTypes.CreateOrUpdatePost:
-//             return {
-//                 ...state,
-//                 fetching: true
-//             };
-//         case PostActionTypes.CreateOrUpdatePostSuccess:
-//             const arr = [...state.posts];
-//             const found = arr.find(p => p.id === action.payload.id);
-//             if (found) {
-//                 // update post
-//                 const index = arr.indexOf(found);
-//                 arr[index] = action.payload;
-//             } else {
-//                 // insert new post
-//                 arr.push(action.payload);
-//             }
-//             return {
-//                 ...state,
-//                 fetching: false,
-//                 posts: arr
-//             };
-//         default:
-//             return state;
-//     }
-// }
 
 export function reducer(state: PostState | undefined, action: Action) {
     return postsReducer(state, action);

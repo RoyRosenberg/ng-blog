@@ -24,7 +24,7 @@ export class AppComponent implements OnDestroy {
               private router: Router, private activatedRoute: ActivatedRoute,
               private titleService: Title) {
     store.dispatch(new UserActions.LoadUsers());
-    store.dispatch(new CustomerActions.LoadCustomers());
+    store.dispatch(CustomerActions.LoadCustomers());
     store.dispatch(new ProjectActions.LoadProjects());
     store.dispatch(new TagActions.LoadTags());
     this.mediaSub = this.mediaObserver.media$

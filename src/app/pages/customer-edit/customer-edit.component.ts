@@ -28,9 +28,9 @@ export class CustomerEditComponent implements OnInit {
       ));
     this.projects$ = store.select(ProjectSelectors.getProjectBySelectedCustomer);
     route.params.subscribe(params => {
-      const custId = +params.id || 0;
-      if (custId !== 0) {
-        store.dispatch(new CustomerActions.SelectCustomer(custId));
+      const id = +params.id || 0;
+      if (id !== 0) {
+        store.dispatch(CustomerActions.SelectCustomer({ id }));
       }
       else { of(new Customer()); }
     });
@@ -40,6 +40,6 @@ export class CustomerEditComponent implements OnInit {
   }
 
   customerSave(customer: Customer) {
-    this.store.dispatch(new CustomerActions.UpdateCustomer(customer));
+    this.store.dispatch(CustomerActions.UpdateCustomer({ customer }));
   }
 }

@@ -22,7 +22,7 @@ export class CustomerListComponent implements OnInit {
   ngOnInit() {
   }
 
-  editCustomer(custId: number) {
-    this.store.dispatch(new CustomerActions.SelectCustomer(custId));
+  editCustomer(id: number) {
+    this.store.dispatch(CustomerActions.SelectCustomer({ id }));
   }
 }

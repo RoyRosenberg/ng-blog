@@ -5,13 +5,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { CustomerEffects } from './effect';
-import { customerReducer } from './reducer';
+import * as customerReducer from './reducer';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
-    StoreModule.forFeature('customers', customerReducer),
+    StoreModule.forFeature('customers', customerReducer.reducer),
     EffectsModule.forFeature([CustomerEffects])
   ],
   declarations: []

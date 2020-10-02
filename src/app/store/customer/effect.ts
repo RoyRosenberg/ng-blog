@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import { AlertService } from 'src/app/services/alert.service';
@@ -17,38 +17,38 @@ export class CustomerEffects {
         private alertService: AlertService
     ) { }
 
-    @Effect()
-    loadCustomers$ = this.actions$.pipe(
-        // tap(() => console.log('In customer Effect')),
-        ofType(CustomerActions.CustomerActionTypes.GetCustomers),
-        mergeMap(combined =>
-            this.custService.getCustomers()
-                .pipe(
-                    map(res => new CustomerActions.LoadCustomersSuccess(res)),
-                    catchError((err) => {
-                        console.log(err);
-                        return of(new CustomerActions.LoadCustomersFailed());
-                    })
-                )
-        )
-    );
+    loadCustomers$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(CustomerActions.LoadCustomers),
+            mergeMap(combined =>
+                this.custService.getCustomers()
+                    .pipe(
+                        map(res => CustomerActions.LoadCustomersSuccess({ customers: res })),
+                        catchError((err) => {
+                            console.log(err);
+                            return of(CustomerActions.LoadCustomersFailed());
+                        })
+                    )
+            )
+        ));
 
-    @Effect()
-    updateCustomer$ = this.actions$.pipe(
-        ofType<CustomerActions.UpdateCustomer>(CustomerActions.CustomerActionTypes.UpdateCustomer),
-        mergeMap(action =>
-            this.custService.updateCustomer(action.payload)
-                .pipe(
-                    map(res => new CustomerActions.UpdateCustomerSuccess(action.payload)),
-                    tap(res => {
-                        this.router.navigate(['/customers/list']);
-                        this.alertService.success('Customer Updated!✨🎉');
-                    }),
-                    catchError((err) => {
-                        console.log(err);
-                        return of(new CustomerActions.UpdateCustomerFailed());
-                    })
-                )
+    updateCustomer$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(CustomerActions.UpdateCustomer),
+            mergeMap(action =>
+                this.custService.updateCustomer(action.customer)
+                    .pipe(
+                        map(res => CustomerActions.UpdateCustomerSuccess({ customer: action.customer })),
+                        tap(res => {
+                            this.router.navigate(['/customers/list']);
+                            this.alertService.success('Customer Updated!✨🎉');
+                        }),
+                        catchError((err) => {
+                            console.log(err);
+                            return of(CustomerActions.UpdateCustomerFailed());
+                        })
+                    )
+            )
         )
     );
 }
