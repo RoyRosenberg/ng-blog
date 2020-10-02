@@ -23,7 +23,7 @@ export class AppComponent implements OnDestroy {
   constructor(store: Store<AppState>, private mediaObserver: MediaObserver,
               private router: Router, private activatedRoute: ActivatedRoute,
               private titleService: Title) {
-    store.dispatch(new UserActions.LoadUsers());
+    store.dispatch(UserActions.LoadUsers());
     store.dispatch(CustomerActions.LoadCustomers());
     store.dispatch(ProjectActions.LoadProjects());
     store.dispatch(TagActions.LoadTags());

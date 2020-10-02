@@ -1,4 +1,6 @@
-import { UserActionTypes, UsersActions } from './actions';
+import { Action, createReducer, on } from '@ngrx/store';
+
+import { UserActions } from '.';
 import { UserState } from './state';
 
 export const initState: UserState = {
@@ -7,72 +9,57 @@ export const initState: UserState = {
     selectedUser: { userName: '', email: '', id: 0, color: '', disabled: false }
 };
 
-export function usersReducer(state: UserState = initState, action: UsersActions): UserState {
-    switch (action.type) {
-        case UserActionTypes.GetUsers:
-            return {
-                ...state,
-                fetching: true
-            };
-        case UserActionTypes.GetUsersSuccess:
-            return {
-                ...state,
-                users: action.payload,
-                fetching: false
-            };
-        case UserActionTypes.GetUsersFailed:
-            return {
-                ...state,
-                fetching: false,
-                users: []
-            };
-        case UserActionTypes.GetUsersFailed:
-            return {
-                ...state,
-                fetching: false,
-                users: []
-            };
-        case UserActionTypes.SetSelectedUserSuccess:
-            return {
-                ...state,
-                selectedUser: action.payload
-            };
-        case UserActionTypes.InitSelectedUser: {
-            return {
-                ...state,
-                selectedUser: { userName: '', email: '', id: 0, color: '', disabled: false }
-            };
+const usersReducer = createReducer(initState,
+    on(UserActions.LoadUsers, state => ({
+        ...state,
+        fetching: true
+    })),
+    on(UserActions.LoadUsersSuccess, (state, payload) => ({
+        ...state,
+        users: payload.users,
+        fetching: false
+    })),
+    on(UserActions.LoadUsersFailed, state => ({
+        ...state,
+        fetching: false,
+        users: []
+    })),
+    on(UserActions.InitSelectedUser, state => ({
+        ...state,
+        selectedUser: { userName: '', email: '', id: 0, color: '', disabled: false }
+    })),
+    on(UserActions.SetSelectedUserSuccess, (state, payload) => ({
+        ...state,
+        selectedUser: payload.user
+    })),
+    on(UserActions.CreateOrUpdateUser, state => ({
+        ...state,
+        fetching: true
+    })),
+    on(UserActions.CreateOrUpdateUserFailed, state => ({
+        ...state,
+        fetching: false
+    })),
+    on(UserActions.CreateOrUpdateUserSuccess, (state, payload) => {
+        const arr = [...state.users];
+        const found = arr.find(u => u.id === payload.user.id);
+        if (found) {
+            // user found
+            const index = arr.indexOf(found);
+            arr[index] = payload.user;
+        } else {
+            // new user
+            arr.push(payload.user);
         }
-        case UserActionTypes.CreateOrUpdateUser: {
-            return {
-                ...state,
-                fetching: true
-            };
-        }
-        case UserActionTypes.CreateOrUpdateUserFailed: {
-            return {
-                ...state,
-                fetching: false
-            };
-        }
-        case UserActionTypes.CreateOrUpdateUserSuccess: {
-            const arr = [...state.users];
-            const found = arr.find(u => u.id === action.payload.id);
-            if (found) {
-                // user found
-                const index = arr.indexOf(found);
-                arr[index] = action.payload;
-            } else {
-                // new user
-                arr.push(action.payload);
-            }
-            return {
-                ...state,
-                users: arr,
-                fetching: false
-            };
-        }
-        default:
-            return state;
-    }
+        return {
+            ...state,
+            users: arr,
+            fetching: false
+        };
+    }),
+);
+
+export function reducer(state: UserState | undefined, action: Action) {
+    return usersReducer(state, action);
 }
+

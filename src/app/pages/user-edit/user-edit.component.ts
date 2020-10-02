@@ -18,11 +18,11 @@ export class UserEditComponent implements OnInit {
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {
     this.user$ = store.select(UserSelectors.getSelectedUser);
     route.params.subscribe(params => {
-      const tagId = +params.id || 0;
-      if (tagId !== 0) {
-        store.dispatch(new UserActions.SetSelectedUser(tagId));
+      const userId = +params.id || 0;
+      if (userId !== 0) {
+        store.dispatch(UserActions.SetSelectedUser({ userId }));
       }
-      else { store.dispatch(new UserActions.InitSelectedUser()); }
+      else { store.dispatch(UserActions.InitSelectedUser()); }
     });
   }
 
@@ -31,6 +31,6 @@ export class UserEditComponent implements OnInit {
   }
 
   saveUser(user: User) {
-    this.store.dispatch(new UserActions.CreateOrUpdateUser(user));
+    this.store.dispatch(UserActions.CreateOrUpdateUser({ user }));
   }
 }
