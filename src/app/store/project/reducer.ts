@@ -1,4 +1,6 @@
-import { ProjectActionTypes, ProjectsActions } from './actions';
+import { Action, createReducer, on } from '@ngrx/store';
+
+import { ProjectActions } from '.';
 import { ProjectState } from './state';
 
 export const initState: ProjectState = {
@@ -6,26 +8,24 @@ export const initState: ProjectState = {
     projects: []
 };
 
-export function projectsReducer(state: ProjectState = initState, action: ProjectsActions): ProjectState {
-    switch (action.type) {
-        case ProjectActionTypes.GetProjects:
-            return {
-                ...state,
-                fetching: true
-            };
-        case ProjectActionTypes.GetProjectsSuccess:
-            return {
-                ...state,
-                projects: action.payload,
-                fetching: false
-            };
-        case ProjectActionTypes.GetProjectsFailed:
-            return {
-                ...state,
-                fetching: false,
-                projects: []
-            };
-        default:
-            return state;
-    }
+const customerReducer = createReducer(initState,
+    on(ProjectActions.LoadProjects, state => ({
+        ...state,
+        fetching: true
+    })),
+    on(ProjectActions.LoadProjectsSuccess, (state, payload) => ({
+        ...state,
+        projects: payload.projects,
+        fetching: false
+    })),
+    on(ProjectActions.LoadProjectsFailed, state => ({
+        ...state,
+        fetching: false,
+        projects: []
+    })),
+);
+
+export function reducer(state: ProjectState | undefined, action: Action) {
+    return customerReducer(state, action);
 }
+
