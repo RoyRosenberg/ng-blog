@@ -21,9 +21,9 @@ export class TagEditComponent implements OnInit {
     route.params.subscribe(params => {
       const tagId = +params.id || 0;
       if (tagId !== 0) {
-        store.dispatch(new tags.TagActions.SetSelectedTag(tagId));
+        store.dispatch(tags.TagActions.SetSelectedTag({ tagId }));
       }
-      else { store.dispatch(new tags.TagActions.InitSelectedTag()); }
+      else { store.dispatch(tags.TagActions.InitSelectedTag()); }
     });
   }
 
@@ -32,9 +32,9 @@ export class TagEditComponent implements OnInit {
 
   saveTag(tag: Tag) {
     if (tag.id === 0) {
-      this.store.dispatch(new tags.TagActions.CreateTag(tag));
+      this.store.dispatch(tags.TagActions.CreateTag({ tag }));
     } else {
-      this.store.dispatch(new tags.TagActions.UpdateTag(tag));
+      this.store.dispatch(tags.TagActions.UpdateTag({ tag }));
     }
   }
 }

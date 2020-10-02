@@ -26,7 +26,7 @@ export class AppComponent implements OnDestroy {
     store.dispatch(new UserActions.LoadUsers());
     store.dispatch(CustomerActions.LoadCustomers());
     store.dispatch(ProjectActions.LoadProjects());
-    store.dispatch(new TagActions.LoadTags());
+    store.dispatch(TagActions.LoadTags());
     this.mediaSub = this.mediaObserver.media$
       .subscribe((change: MediaChange) => {
         console.log(change.mqAlias);

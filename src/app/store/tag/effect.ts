@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Actions, Effect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
@@ -20,94 +20,91 @@ export class TagEffects {
         private alertService: AlertService
     ) { }
 
-    @Effect()
-    loadTags$ = this.actions$.pipe(
-        // tap(() => console.log('In Tag Effect')),
-        ofType(TagActions.TagActionTypes.GetTags),
-        mergeMap(combined =>
-            this.tagService.getTags()
-                .pipe(
-                    map(res => new TagActions.LoadTagsSuccess(res)),
-                    catchError((err) => {
-                        console.log(err);
-                        return of(new TagActions.LoadTagsFailed());
-                    })
-                )
+
+    loadTags$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(TagActions.LoadTags),
+            mergeMap(combined =>
+                this.tagService.getTags()
+                    .pipe(
+                        map(tags => TagActions.LoadTagsSuccess({ tags })),
+                        catchError((err) => {
+                            console.log(err);
+                            return of(TagActions.LoadTagsFailed());
+                        })
+                    )
+            )
         )
     );
 
-    @Effect()
-    createTag = this.actions$.pipe(
-        ofType<TagActions.CreateTag>(TagActions.TagActionTypes.CreateTag),
-        mergeMap(action =>
-            this.tagService.createTag(action.payload).pipe(
-                map(res => new TagActions.CreateTagSuccess(res)),
+    createTag$ = createEffect(() => this.actions$.pipe(
+        ofType(TagActions.CreateTag),
+        mergeMap(payload =>
+            this.tagService.createTag(payload.tag).pipe(
+                map(tag => TagActions.CreateTagSuccess({ tag })),
                 tap(res => {
                     this.router.navigate(['/tags/list']);
                     this.alertService.success('Tag Created!✨🎉');
                 }, catchError((err) => {
                     console.log(err);
                     this.alertService.error('Tag Creation Failed 😥');
-                    return of(new TagActions.CreateTagFailed());
+                    return of(TagActions.CreateTagFailed());
                 })
                 ))
         )
-    );
+    ));
 
-    @Effect()
-    updateTag = this.actions$.pipe(
-        ofType<TagActions.UpdateTag>(TagActions.TagActionTypes.UpdateTag),
-        mergeMap(action =>
-            this.tagService.updateTag(action.payload).pipe(
-                map(res => new TagActions.UpdateTagSuccess()),
+    updateTag$ = createEffect(() => this.actions$.pipe(
+        ofType(TagActions.UpdateTag),
+        mergeMap(payload =>
+            this.tagService.updateTag(payload.tag).pipe(
+                map(res => TagActions.UpdateTagSuccess()),
                 tap(res => {
                     this.router.navigate(['/tags/list']);
                     this.alertService.success('Tag Updated!✨🎉');
                 }, catchError((err) => {
                     console.log(err);
                     this.alertService.error('Tag Update Failed 😥');
-                    return of(new TagActions.UpdateTagFailed());
+                    return of(TagActions.UpdateTagFailed());
                 })
                 ))
         )
-    );
+    ));
 
-    @Effect()
-    selectTag = this.actions$.pipe(
-        ofType<TagActions.SetSelectedTag>(TagActions.TagActionTypes.SetSelectedTag),
+    selectTag$ = createEffect(() => this.actions$.pipe(
+        ofType(TagActions.SetSelectedTag),
         withLatestFrom(this.store),
         mergeMap(combined => {
-            const [act, state] = combined;
+            const [payload, state] = combined;
             const allTags = state.tags.tags;
-            const filtered = allTags.filter(t => t.id === act.payload);
+            const filtered = allTags.filter(t => t.id === payload.tagId);
             if (filtered.length === 0) {
                 this.router.navigate(['/tags/list']);
-                this.alertService.error(`Tag with Id ${act.payload} not found!`);
-                return of(new TagActions.SetSelectedTagFailed());
+                this.alertService.error(`Tag with Id ${payload.tagId} not found!`);
+                return of(TagActions.SetSelectedTagFailed());
             } else {
-                const cloned = { ...filtered[0] };
-                return of(new TagActions.SetSelectedTagSuccess(cloned));
+                const tag = { ...filtered[0] };
+                return of(TagActions.SetSelectedTagSuccess({ tag }));
             }
         })
-    );
+    ));
 
-    @Effect()
-    deleteTag = this.actions$.pipe(
-        ofType<TagActions.DeleteTag>(TagActions.TagActionTypes.DeleteTag),
-        mergeMap(action => {
+    deleteTag$ = createEffect(() => this.actions$.pipe(
+        ofType(TagActions.DeleteTag),
+        mergeMap(payload => {
             const approvedByUser = this.alertService.prompt('Are you sure?');
             if (approvedByUser) {
-                return this.tagService.deleteTag(action.payload).pipe(
-                    map(tagId => new TagActions.DeleteTagSuccess(tagId)),
+                return this.tagService.deleteTag(payload.tagId).pipe(
+                    map(tagId => TagActions.DeleteTagSuccess({ tagId })),
                     tap(tagId =>
                         this.alertService.success('Tag Deleted 👍'),
                         catchError(err => {
                             console.log(err);
                             this.alertService.error('Tag Deletion Failed 😥');
-                            return of(new TagActions.DeleteTagFailed());
+                            return of(TagActions.DeleteTagFailed());
                         })
                     ));
-            } else { return of(new TagActions.DeleteTagCancelled()); }
+            } else { return of(TagActions.DeleteTagCancelled()); }
         })
-    );
+    ));
 }

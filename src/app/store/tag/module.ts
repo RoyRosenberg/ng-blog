@@ -5,13 +5,13 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { TagEffects } from './effect';
-import { tagsReducer } from './reducer';
+import * as tagsReducer from './reducer';
 
 @NgModule({
   imports: [
     CommonModule,
     HttpClientModule,
-    StoreModule.forFeature('tags', tagsReducer),
+    StoreModule.forFeature('tags', tagsReducer.reducer),
     EffectsModule.forFeature([TagEffects])
   ],
   declarations: []

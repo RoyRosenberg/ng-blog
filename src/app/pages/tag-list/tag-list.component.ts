@@ -22,7 +22,7 @@ export class TagListComponent implements OnInit {
   }
 
   deleteTag(tagId: number) {
-    this.store.dispatch(new TagActions.DeleteTag(tagId));
+    this.store.dispatch(TagActions.DeleteTag({ tagId }));
   }
 
 }
