@@ -31,7 +31,7 @@ export class PostListComponent implements OnInit {
     this.inProgress$ = this.store.select(PostSelectors.getFetchingInProgress);
     this.postPerPage$ = this.store.select(PostSelectors.getPostsPerPageCount);
     this.postCount$ = this.store.select(PostSelectors.getPostCount);
-    this.store.dispatch(new PostActions.LoadPosts());
+    this.store.dispatch(PostActions.LoadPosts({}));
     this.store.select(PostSelectors.getFilter).subscribe(filter => this.currentFilter = filter);
     this.users$ = this.store.select(UserSelectors.getUsers);
     this.customers$ = this.store.select(CustomerSelectors.getCustomers);
@@ -51,7 +51,7 @@ export class PostListComponent implements OnInit {
       pageIndexToFetch: paging.currentPage,
     };
     console.log('filter', filter);
-    this.store.dispatch(new PostActions.LoadPosts(filter));
+    this.store.dispatch(PostActions.LoadPosts({ filter }));
   }
 
   // Occurs when the user presses search
@@ -67,7 +67,7 @@ export class PostListComponent implements OnInit {
       pageIndexToFetch: 1
     };
     console.log('post search', filter);
-    this.store.dispatch(new PostActions.LoadPosts(filter));
+    this.store.dispatch(PostActions.LoadPosts({ filter }));
   }
 
 }

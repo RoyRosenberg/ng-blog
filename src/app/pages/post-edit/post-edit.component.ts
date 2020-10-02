@@ -46,6 +46,6 @@ export class PostEditComponent implements OnInit {
 
   savePost(post: Post) {
     console.log('post is about to be saved', post);
-    this.store.dispatch(new PostActions.CreateOrUpdatePost(post));
+    this.store.dispatch(PostActions.CreateOrUpdatePost({ post }));
   }
 }
