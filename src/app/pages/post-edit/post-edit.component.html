@@ -17,5 +17,5 @@
 <!-- All OK - Show post form -->
 <ng-template #showPostPanel>
     <app-post-item [users]="users$ | async" [customers]="customers$ | async" [projects]="projects$ | async"
-        [tags]="tags$ | async"></app-post-item>
+        [tags]="tags$ | async" (SavePost)="savePost($event)"></app-post-item>
 </ng-template>

@@ -18,4 +18,16 @@ export class PostService {
     const body = JSON.stringify(filter);
     return this.http.post<PagingResponse<Post>>(`${this.baseUrl}/PostQuery`, body, { headers: header });
   }
+
+  createPost(post: Post): Observable<Post> {
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = JSON.stringify(post);
+    return this.http.post<Post>(`${this.baseUrl}/Posts`, body, { headers: header });
+  }
+
+  updatePost(post: Post): Observable<Post> {
+    const header = new HttpHeaders().set('Content-Type', 'application/json');
+    const body = JSON.stringify(post);
+    return this.http.put<Post>(`${this.baseUrl}/Posts`, body, { headers: header });
+  }
 }

@@ -16,4 +16,5 @@ export class Post {
     user: User;
     project: Project;
     actionItems: ActionItem[];
+    tags: number[];
 }

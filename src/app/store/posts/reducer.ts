@@ -45,6 +45,27 @@ export function postsReducer(state: PostState = initState, action: PostsActions)
                 ...state,
                 fetching: false
             };
+        case PostActionTypes.CreateOrUpdatePost:
+            return {
+                ...state,
+                fetching: true
+            };
+        case PostActionTypes.CreateOrUpdatePostSuccess:
+            const arr = [...state.posts];
+            const found = arr.find(p => p.id === action.payload.id);
+            if (found) {
+                // update post
+                const index = arr.indexOf(found);
+                arr[index] = action.payload;
+            } else {
+                // insert new post
+                arr.push(action.payload);
+            }
+            return {
+                ...state,
+                fetching: false,
+                posts: arr
+            };
         default:
             return state;
     }

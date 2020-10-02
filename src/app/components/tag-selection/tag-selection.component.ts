@@ -1,6 +1,6 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl } from '@angular/forms';
 import { MatAutocomplete, MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { Observable } from 'rxjs';
@@ -25,8 +25,9 @@ export class TagSelectionComponent {
   @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
   @ViewChild('auto') matAutocomplete: MatAutocomplete;
   @Input() tags: Tag[];
+  @Input() selectedTag: FormArray;
 
-  constructor() {
+  constructor(private formBuilder: FormBuilder) {
     this.filteredTags = this.tagCtrl.valueChanges.pipe(
       // tap(x => console.log(x)),
       startWith(null),
@@ -34,15 +35,17 @@ export class TagSelectionComponent {
   }
 
   add(event: MatChipInputEvent): void {
-    // console.log('event add', event);
+    console.log('event add', event);
 
     const input = event.input;
     const value = event.value;
     const searchedTag = this.stringToTag(value);
-
     // Add our tag
     if (searchedTag !== null) {
       this.tagList.push(searchedTag);
+      const cntrl = this.formBuilder.control(searchedTag.id);
+      this.selectedTag.push(cntrl);
+      console.log('selected tag array updated', this.selectedTag);
     }
 
     // Reset the input value
@@ -62,11 +65,13 @@ export class TagSelectionComponent {
   }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    // console.log('selected', event.option.value);
     const tagName = event.option.value;
     const tag = this.stringToTag(tagName);
     if (tag !== null) {
       this.tagList.push(tag);
+      const cntrl = this.formBuilder.control(tag.id);
+      this.selectedTag.push(cntrl);
+      console.log('selected tag array updated', this.selectedTag);
     }
     this.tagInput.nativeElement.value = '';
     this.tagCtrl.setValue(null);

@@ -9,7 +9,6 @@ import { User } from 'src/app/models/user';
 })
 export class ActionItemItemComponent implements OnInit {
   @Input() set item(i: FormGroup) {
-    console.log('actin item demo,', i);
     this.actionItemGrp = i;
   }
   @Input() userList: User[];

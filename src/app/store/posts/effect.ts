@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of } from 'rxjs';
 import { catchError, map, mergeMap, tap, withLatestFrom } from 'rxjs/operators';
+import { AlertService } from 'src/app/services/alert.service';
 import { PostService } from 'src/app/services/post.service';
 
 import { AppState } from '../appState';
@@ -13,7 +15,9 @@ export class PostEffects {
     constructor(
         private actions$: Actions,
         private postService: PostService,
-        private store: Store<AppState>
+        private store: Store<AppState>,
+        private router: Router,
+        private alertService: AlertService
     ) { }
 
     @Effect()
@@ -32,5 +36,39 @@ export class PostEffects {
                     })
                 )
         )
+    );
+
+    @Effect()
+    createOrUpdatePost$ = this.actions$.pipe(
+        ofType<PostActions.CreateOrUpdatePost>(PostActions.PostActionTypes.CreateOrUpdatePost),
+        mergeMap(action => {
+            if (action.payload.id === 0) {
+                return this.postService.createPost(action.payload)
+                    .pipe(
+                        tap(res => {
+                            this.router.navigate(['/posts/list']);
+                            this.alertService.success('Post Created!✨🎉');
+                        }),
+                        map(res => new PostActions.CreateOrUpdatePostSuccess(res)),
+                        catchError((err) => {
+                            console.log(err);
+                            return of(new PostActions.LoadPostsFailed());
+                        })
+                    );
+            } else {
+                return this.postService.updatePost(action.payload)
+                    .pipe(
+                        tap(res => {
+                            this.router.navigate(['/posts/list']);
+                            this.alertService.success('Post Updated!✨🎉');
+                        }),
+                        map(res => new PostActions.CreateOrUpdatePostSuccess(res)),
+                        catchError((err) => {
+                            console.log(err);
+                            return of(new PostActions.LoadPostsFailed());
+                        })
+                    );
+            }
+        })
     );
 }

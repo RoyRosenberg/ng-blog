@@ -8,6 +8,10 @@ export enum PostActionTypes {
     GetPosts = '[Post] Get Posts',
     GetPostsSuccess = '[Post] Get Posts Success',
     GetPostsFailed = '[Post] Get Posts Failed',
+
+    CreateOrUpdatePost = '[Post] Create or Update',
+    CreateOrUpdatePostFailed = '[Post] Create or Update Failed',
+    CreateOrUpdatePostSuccess = '[Post] Create or Update Success'
 }
 
 export class LoadPosts implements Action {
@@ -24,7 +28,23 @@ export class LoadPostsFailed implements Action {
     readonly type = PostActionTypes.GetPostsFailed;
 }
 
+export class CreateOrUpdatePost implements Action {
+    readonly type = PostActionTypes.CreateOrUpdatePost;
+    constructor(public payload: Post) { }
+}
+
+export class CreateOrUpdatePostSuccess implements Action {
+    readonly type = PostActionTypes.CreateOrUpdatePostSuccess;
+    constructor(public payload: Post) { }
+}
+
+export class CreateOrUpdatePostFailed implements Action {
+    readonly type = PostActionTypes.CreateOrUpdatePostFailed;
+}
 
 export type PostsActions = LoadPosts
     | LoadPostsSuccess
-    | LoadPostsFailed;
+    | LoadPostsFailed
+    | CreateOrUpdatePost
+    | CreateOrUpdatePostSuccess
+    | CreateOrUpdatePostFailed;
