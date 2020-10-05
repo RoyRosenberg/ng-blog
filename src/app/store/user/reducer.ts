@@ -1,37 +1,42 @@
+import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
+import { User } from 'src/app/models/user';
 
-import { UserActions } from '.';
+import * as UserActions from './actions';
 import { UserState } from './state';
 
-export const initState: UserState = {
+export const adapter: EntityAdapter<User> = createEntityAdapter<User>({});
+
+export const initState: UserState = adapter.getInitialState({
     fetching: false,
-    users: [],
-    selectedUser: { userName: '', email: '', id: 0, color: '', disabled: false }
-};
+    selectedUser: 0,
+    disabled: false
+});
 
 const usersReducer = createReducer(initState,
     on(UserActions.LoadUsers, state => ({
         ...state,
         fetching: true
     })),
-    on(UserActions.LoadUsersSuccess, (state, payload) => ({
-        ...state,
-        users: payload.users,
-        fetching: false
-    })),
+    on(UserActions.LoadUsersSuccess, (state, payload) =>
+        adapter.setAll(payload.users, { ...state, fetching: false })
+    ),
     on(UserActions.LoadUsersFailed, state => ({
         ...state,
-        fetching: false,
-        users: []
+        fetching: false
     })),
-    on(UserActions.InitSelectedUser, state => ({
+    on(UserActions.SetSelectedUser, (state, payload) => ({
         ...state,
-        selectedUser: { userName: '', email: '', id: 0, color: '', disabled: false }
+        selectedUser: payload.userId
     })),
-    on(UserActions.SetSelectedUserSuccess, (state, payload) => ({
-        ...state,
-        selectedUser: payload.user
-    })),
+    // on(UserActions.InitSelectedUser, state => ({
+    //     ...state,
+    //     selectedUser: { userName: '', email: '', id: 0, color: '', disabled: false }
+    // })),
+    // on(UserActions.SetSelectedUserSuccess, (state, payload) => ({
+    //     ...state,
+    //     selectedUser: payload.user
+    // })),
     on(UserActions.CreateOrUpdateUser, state => ({
         ...state,
         fetching: true
@@ -40,23 +45,9 @@ const usersReducer = createReducer(initState,
         ...state,
         fetching: false
     })),
-    on(UserActions.CreateOrUpdateUserSuccess, (state, payload) => {
-        const arr = [...state.users];
-        const found = arr.find(u => u.id === payload.user.id);
-        if (found) {
-            // user found
-            const index = arr.indexOf(found);
-            arr[index] = payload.user;
-        } else {
-            // new user
-            arr.push(payload.user);
-        }
-        return {
-            ...state,
-            users: arr,
-            fetching: false
-        };
-    }),
+    on(UserActions.CreateOrUpdateUserSuccess, (state, payload) =>
+        adapter.upsertOne(payload.user, { ...state, fetching: false })
+    ),
 );
 
 export function reducer(state: UserState | undefined, action: Action) {

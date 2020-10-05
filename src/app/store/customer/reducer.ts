@@ -1,13 +1,16 @@
+import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
+import { Customer } from 'src/app/models/customer';
 
-import { CustomerActions } from '.';
+import * as CustomerActions from './actions';
 import { CustomerState } from './state';
 
-export const initState: CustomerState = {
+export const adapter: EntityAdapter<Customer> = createEntityAdapter<Customer>({});
+
+export const initState: CustomerState = adapter.getInitialState({
     fetching: false,
-    customers: [],
     selectedCustomerId: 0
-};
+});
 
 const customerReducer = createReducer(initState,
     on(CustomerActions.LoadCustomers, state => ({
@@ -18,11 +21,8 @@ const customerReducer = createReducer(initState,
         ...state,
         fetching: true
     })),
-    on(CustomerActions.LoadCustomersSuccess, (state, payload) => ({
-        ...state,
-        customers: payload.customers,
-        fetching: false
-    })),
+    on(CustomerActions.LoadCustomersSuccess, (state, payload) =>
+        adapter.setAll(payload.customers, { ...state, fetching: false })),
     on(CustomerActions.LoadCustomersFailed, state => ({
         ...state,
         fetching: false
@@ -36,17 +36,9 @@ const customerReducer = createReducer(initState,
         ...state,
         fetching: false
     })),
-    on(CustomerActions.UpdateCustomerSuccess, (state, payload) => {
-        const custList = [...state.customers];
-        const filtered = custList.filter(t => t.id === payload.customer.id);
-        const index = custList.indexOf(filtered[0]);
-        custList[index] = payload.customer;
-        return {
-            ...state,
-            fetching: false,
-            customers: custList
-        };
-    }),
+    on(CustomerActions.UpdateCustomerSuccess, (state, payload) =>
+        adapter.upsertOne(payload.customer, { ...state, fetching: false })
+    )
 );
 
 export function reducer(state: CustomerState | undefined, action: Action) {

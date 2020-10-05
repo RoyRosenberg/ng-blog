@@ -2,10 +2,10 @@
 
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px">
     <div fxFlex="100">
-        <app-post-search [users]="users$ | async" [customers]="customers$ | async" (search)="performSearch($event)"></app-post-search>
+        <app-post-search [users]="users$ | async" [customers]="customers$ | async" (search)="performSearch($event)">
+        </app-post-search>
     </div>
 </div>
-
 <div *ngIf="(posts$ | async).length === 0 && (inProgress$ | async) === false">
     <mat-card [style.backgroundColor]="'orange'">No Items Found</mat-card>
 </div>

@@ -1,8 +1,8 @@
+import { Color } from '@angular-material-components/color-picker';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Tag } from '../../models/tag';
-import { Color } from '@angular-material-components/color-picker';
 
 @Component({
   selector: 'app-tag-item',
@@ -49,7 +49,6 @@ export class TagItemComponent implements OnInit {
     if (this.frmTag.valid) {
       const tag = this.frmTag.value as Tag;
       tag.color = `#${this.frmTag.value.color.hex}`;
-      console.log('tag:', tag);
       this.saveClick.emit(tag);
     }
   }

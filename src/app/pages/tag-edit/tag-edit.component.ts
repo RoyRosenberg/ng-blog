@@ -20,10 +20,7 @@ export class TagEditComponent implements OnInit {
     this.tag$ = store.select(TagSelectors.getSelectedTag);
     route.params.subscribe(params => {
       const tagId = +params.id || 0;
-      if (tagId !== 0) {
-        store.dispatch(tags.TagActions.SetSelectedTag({ tagId }));
-      }
-      else { store.dispatch(tags.TagActions.InitSelectedTag()); }
+      store.dispatch(tags.TagActions.SetSelectedTag({ tagId }));
     });
   }
 
@@ -31,10 +28,6 @@ export class TagEditComponent implements OnInit {
   }
 
   saveTag(tag: Tag) {
-    if (tag.id === 0) {
-      this.store.dispatch(tags.TagActions.CreateTag({ tag }));
-    } else {
-      this.store.dispatch(tags.TagActions.UpdateTag({ tag }));
-    }
+    this.store.dispatch(tags.TagActions.CreateOrUpdateTag({ tag }));
   }
 }

@@ -1,7 +1,7 @@
+import { EntityState } from '@ngrx/entity';
 import { User } from 'src/app/models/user';
 
-export interface UserState {
+export interface UserState extends EntityState<User> {
     fetching: boolean;
-    users: User[];
-    selectedUser: User;
+    selectedUser: number;
 }

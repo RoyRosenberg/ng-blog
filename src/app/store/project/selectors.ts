@@ -2,15 +2,24 @@ import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as customerStore from 'src/app/store/customer';
 
 import { getSelectedCustomer } from '../customer/selectors';
+import { adapter } from './reducer';
 import { ProjectState } from './state';
 
 const getProjectsFeatureState = createFeatureSelector<ProjectState>('projects');
+
+const {
+    selectIds,
+    selectEntities,
+    selectAll,
+    selectTotal,
+} = adapter.getSelectors();
 
 export const getProjects = createSelector(
     getProjectsFeatureState,
     customerStore.CustomerSelectors.getCustomers,
     (state, customers) => {
-        return state.projects.map(p => {
+        const projects = selectAll(state);
+        return projects.map(p => {
             const proj = { ...p };
             const cust = customers.find(c => c.id === proj.customerId);
             if (cust) {
@@ -30,6 +39,8 @@ export const getFetchingInProgress = createSelector(
 export const getProjectBySelectedCustomer = createSelector(
     getProjectsFeatureState,
     getSelectedCustomer,
-    (state, customer) =>
-        customer !== null ? state.projects.filter(p => p.customerId === customer.id) : []
+    (state, customer) => {
+        const projects = selectAll(state);
+        return customer !== null ? projects.filter(p => p.customerId === customer.id) : [];
+    }
 );

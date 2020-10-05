@@ -1,14 +1,21 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
+import { adapter } from './reducer';
 import { CustomerState } from './state';
 
 const getCustomersFeatureState = createFeatureSelector<CustomerState>('customers');
 
+const {
+    selectIds,
+    selectEntities,
+    selectAll,
+    selectTotal,
+} = adapter.getSelectors();
+
 
 export const getCustomers = createSelector(
     getCustomersFeatureState,
-    state => state.customers
-);
+    selectAll);
 
 export const getFetchingInProgress = createSelector(
     getCustomersFeatureState,

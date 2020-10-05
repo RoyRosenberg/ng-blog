@@ -1,7 +1,7 @@
+import { EntityState } from '@ngrx/entity';
 import { Customer } from 'src/app/models/customer';
 
-export interface CustomerState {
+export interface CustomerState extends EntityState<Customer> {
     fetching: boolean;
-    customers: Customer[];
     selectedCustomerId: number;
 }

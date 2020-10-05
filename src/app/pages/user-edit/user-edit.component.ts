@@ -19,10 +19,7 @@ export class UserEditComponent implements OnInit {
     this.user$ = store.select(UserSelectors.getSelectedUser);
     route.params.subscribe(params => {
       const userId = +params.id || 0;
-      if (userId !== 0) {
-        store.dispatch(UserActions.SetSelectedUser({ userId }));
-      }
-      else { store.dispatch(UserActions.InitSelectedUser()); }
+      store.dispatch(UserActions.SetSelectedUser({ userId }));
     });
   }
 

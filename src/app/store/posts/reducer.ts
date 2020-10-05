@@ -1,14 +1,17 @@
+import { createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 import { Action, createReducer, on } from '@ngrx/store';
+import { Post } from 'src/app/models/Post';
 
-import { PostActions } from '.';
+import * as PostActions from './actions';
 import { PostState } from './state';
 
 const from = new Date();
 from.setDate(from.getDate() - 300);
 
-export const initState: PostState = {
+export const adapter: EntityAdapter<Post> = createEntityAdapter<Post>({});
+
+export const initState: PostState = adapter.getInitialState({
     fetching: false,
-    posts: [],
     filter: {
         userId: 0,
         customerId: 0,
@@ -22,7 +25,7 @@ export const initState: PostState = {
     currentPage: 1,
     totalPages: 0,
     totalPostCount: 0
-};
+});
 
 const postsReducer = createReducer(
     initState,
@@ -31,15 +34,15 @@ const postsReducer = createReducer(
         fetching: true,
         filter: payload.filter ? payload.filter : initState.filter
     })),
-    on(PostActions.LoadPostsSuccess, (state, payload) => ({
-        ...state,
-        posts: payload.pagingResponse.items,
-        currentPage: payload.pagingResponse.currentPage,
-        postsPerPage: payload.pagingResponse.itemsPerPage,
-        totalPages: payload.pagingResponse.totalPages,
-        totalPostCount: payload.pagingResponse.totalItemCount,
-        fetching: false
-    })),
+    on(PostActions.LoadPostsSuccess, (state, payload) =>
+        adapter.setAll(payload.pagingResponse.items, {
+            ...state,
+            currentPage: payload.pagingResponse.currentPage,
+            postsPerPage: payload.pagingResponse.itemsPerPage,
+            totalPages: payload.pagingResponse.totalPages,
+            totalPostCount: payload.pagingResponse.totalItemCount,
+            fetching: false
+        })),
     on(PostActions.LoadPostsFailed, state => ({
         ...state,
         fetching: false
@@ -48,23 +51,9 @@ const postsReducer = createReducer(
         ...state,
         fetching: true
     })),
-    on(PostActions.CreateOrUpdatePostSuccess, (state, payload) => {
-        const arr = [...state.posts];
-        const found = arr.find(p => p.id === payload.post.id);
-        if (found) {
-            // update post
-            const index = arr.indexOf(found);
-            arr[index] = payload.post;
-        } else {
-            // insert new post
-            arr.push(payload.post);
-        }
-        return {
-            ...state,
-            fetching: false,
-            posts: arr
-        };
-    }),
+    on(PostActions.CreateOrUpdatePostSuccess, (state, payload) =>
+        adapter.upsertOne(payload.post, { ...state, fetching: false })
+    ),
     on(PostActions.CreateOrUpdatePostFailed, state => ({
         ...state,
         fetching: false,

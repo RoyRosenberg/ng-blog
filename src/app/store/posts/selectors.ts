@@ -3,9 +3,17 @@ import { ProjectStatus } from 'src/app/models/project';
 import * as projectStore from 'src/app/store/project';
 import * as userStore from 'src/app/store/user';
 
+import { adapter } from './reducer';
 import { PostState } from './state';
 
 const getPostsFeatureState = createFeatureSelector<PostState>('posts');
+
+const {
+    selectIds,
+    selectEntities,
+    selectAll,
+    selectTotal,
+} = adapter.getSelectors();
 
 export const getPostCount = createSelector(
     getPostsFeatureState,
@@ -27,12 +35,15 @@ export const getFilter = createSelector(
     state => state.filter
 );
 
+const select = selectAll;
+
 export const getPosts = createSelector(
     getPostsFeatureState,
     userStore.UserSelectors.getUsers,
     projectStore.ProjectSelectors.getProjects,
     (state, users, projects) => {
-        return state.posts.map(p => {
+        const posts = selectAll(state);
+        return posts.map(p => {
             const post = { ...p };
             // update users
             const filteredUsers = users.find(u => u.id === p.userId);
@@ -56,7 +67,7 @@ export const getPosts = createSelector(
 
             // update action item user
             post.actionItems = post.actionItems.map(item => {
-                const actionItem = {...item};
+                const actionItem = { ...item };
                 const actionItemUser = users.find(u => u.id === actionItem.userId);
                 if (actionItemUser) {
                     actionItem.user = actionItemUser;

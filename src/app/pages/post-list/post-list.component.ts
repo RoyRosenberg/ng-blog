@@ -28,6 +28,10 @@ export class PostListComponent implements OnInit {
 
   ngOnInit(): void {
     this.posts$ = this.store.select(PostSelectors.getPosts);
+    this.store.select(PostSelectors.getPosts).subscribe(p => {
+      console.log('posts', p);
+
+    });
     this.inProgress$ = this.store.select(PostSelectors.getFetchingInProgress);
     this.postPerPage$ = this.store.select(PostSelectors.getPostsPerPageCount);
     this.postCount$ = this.store.select(PostSelectors.getPostCount);
